@@ -1,0 +1,19 @@
+---
+description: CS farm live stack - guest eyes, YOLO, host teach, glass in VM
+globs: worker/**/*.{mjs,py,ps1,html},STRATEGY.md,farm.bat
+alwaysApply: false
+---
+
+# cs-steam-panel farm stack
+
+Source of truth: `STRATEGY.md`.
+
+- Eyes: guest `guest-shot.ps1` via `/see` `/shot` -> host `D:\FarmVMs\ops\vision\live.png`. vmconnect is optional. Do not use host-overlay or host-vmconnect-shot as the live path.
+- Overlay: `guest-overlay.ps1` click-through over CS2 **in the guest**. Teach stays on **host** `http://127.0.0.1:39210/` and LAN `http://10.250.0.1:39210/` for the guest glass.
+- Aim order in `fsm/game.mjs`: YOLO player dets (`c,ch,t,th`) then GSI world aim then radar/bandit. Nav classes `wall,turn,climb,cover,drop,look` (turn = face other way, look = look at box).
+- Policy: your prompt on the frozen teach frame (not demo BC). Order: live prompt > spawn/wall rules > bandit RL. Toggles in `D:/FarmVMs/ops/yolo/human/stack.json` via teach UI.
+- Input: guest `/input` only. No host SendKeys. No guest `ShowWindow 3` maximize of CS2.
+- No `map` via console type (`FARM_SKIP_MAP=1`). No MM / Cybershoke / `matchmaking_session_create`.
+- If vmconnect is open: Basic only. Never Enhanced Session. Never Default Switch.
+- Golden: 6 vCPU, 14 GB static RAM, GPU-PV. Do not resize while Running.
+- One-shots `_tmp-*`, delete after.

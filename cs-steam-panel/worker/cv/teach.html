@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>farm teach mark</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: #111; color: #eee; }
+    header { padding: 10px 14px; background: #1a1a1a; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    header a { color: #8cf; }
+    .modes { display: flex; gap: 6px; padding: 0 14px 8px; flex-wrap: wrap; }
+    .modes button.on { background: #2a5; color: #fff; }
+    .modeHint { margin: 0 14px 8px; font-size: 12px; opacity: 0.85; }
+    body[data-mode="eyes"] .for-record, body[data-mode="eyes"] .for-correct, body[data-mode="eyes"] .for-train { display: none !important; }
+    body[data-mode="record"] .for-eyes-extra, body[data-mode="record"] .for-correct, body[data-mode="record"] .for-train, body[data-mode="record"] .for-eyes-classes { display: none !important; }
+    body[data-mode="correct"] .for-record, body[data-mode="correct"] .for-train, body[data-mode="correct"] .for-eyes-classes { display: none !important; }
+    body[data-mode="train"] .for-record, body[data-mode="train"] .for-correct, body[data-mode="train"] .for-eyes-extra, body[data-mode="train"] .for-eyes-classes { display: none !important; }
+    body:not([data-mode="record"]) #recBar,
+    body:not([data-mode="record"]) #recPanel { display: none !important; }
+    #jsErr { display: none; margin: 0 14px 10px; padding: 10px 12px; background: #411; border: 1px solid #a44; }
+    .banner { margin: 0 14px 10px; padding: 10px 12px; background: #1c2430; border: 1px solid #456; }
+    .banner b { display: inline; }
+    .split2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .card-train { border-color: #385; }
+    .card-play { border-color: #a83; }
+    .cls button.cmd { opacity: 0.35; }
+    .muted { opacity: 0.7; font-size: 12px; }
+    .ask { background: #2a2110; border: 1px solid #6a5420; padding: 8px 12px; margin: 0 14px 10px; }
+    .ask li { margin: 4px 0; }
+    main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(560px, 1.2fr); gap: 12px; align-items: start; padding: 0 14px 14px; }
+    .left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .stack { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 0 14px 10px; }
+    .layer { background: #181818; border: 1px solid #333; padding: 8px; font-size: 12px; }
+    .layer b { display: block; margin-bottom: 6px; }
+    .layer .hint { opacity: 0.65; font-size: 11px; margin: 4px 0 6px; }
+    .tog { padding: 6px 8px !important; }
+    .tog.on { background: #2a5; border-color: #4c8; color: #fff; }
+    .tog.off { background: #422; border-color: #844; color: #fcc; }
+    .cls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .cls button { padding: 7px 6px; border: 0; cursor: pointer; color: #111; font-size: 12px; }
+    .cls button.on { outline: 2px solid #fff; }
+    #c0 { background: #66ccff; } #c1 { background: #99ddff; }
+    #c2 { background: #ffaa66; } #c3 { background: #ff8866; }
+    #c4 { background: #cc4444; color: #fff; } #c5 { background: #44cc88; }
+    #c6 { background: #44cccc; } #c7 { background: #ddaa66; }
+    #c8 { background: #cc66cc; } #c9 { background: #aaaa44; }
+    #c10 { background: #88ff66; }
+    #c11 { background: #9a8a7a; color: #fff; }
+    .stage { position: relative; background: #000; min-height: 360px; }
+    canvas, img#bg { display: block; width: 100%; height: auto; max-width: 100%; }
+    canvas { position: absolute; left: 0; top: 0; cursor: crosshair; }
+    aside { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-content: start; }
+    .span2 { grid-column: 1 / -1; }
+    button, select, textarea { font: inherit; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 44px; background: #1c1c1c; color: #eee; border: 1px solid #444; }
+    .row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .row button.on { background: #2a6 !important; border-color: #8f8 !important; color: #fff !important; font-weight: 700; box-shadow: 0 0 0 2px #fff inset; }
+    .picknow { margin-top: 6px; color: #8f8; font-weight: 700; font-size: 13px; }
+    .row button.pri { background: #3a6; border-color: #5c8; padding: 10px 16px; font-weight: 700; }
+    .radarbox { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+    .radarbox img { width: 100%; height: auto; image-rendering: pixelated; background: #000; border: 1px solid #555; display: block; }
+    .radarbox .cap { opacity: 0.65; font-size: 10px; margin-top: 2px; }
+    .sublog { max-height: 70px; overflow: auto; font-size: 11px; white-space: pre-wrap; background: #0d0d0d; border: 1px solid #333; padding: 6px; margin-top: 6px; }
+    .sublog.eyes { border-left: 3px solid #6c6; color: #9c9; }
+    .sublog.hudch { border-left: 3px solid #c80; color: #ec8; }
+    .sublog.radar { border-left: 3px solid #cc8; color: #eea; }
+    .sublog.walk { border-left: 3px solid #6af; color: #ace; }
+    .sublog.aim { border-left: 3px solid #c6f; color: #eae; }
+    .see { background: #151515; border: 1px solid #333; padding: 6px; font-size: 12px; white-space: pre-wrap; max-height: 88px; overflow: auto; }
+    .think { background: #1a1610; border: 1px solid #543; padding: 6px; font-size: 12px; white-space: pre-wrap; margin-top: 4px; }
+    .reply { padding: 10px 12px; border: 1px solid #444; min-height: 52px; font-size: 14px; white-space: pre-wrap; }
+    .reply.yes { background: #143; border-color: #3a6; }
+    .reply.no { background: #411; border-color: #a44; }
+    .logs { background: #0d0d0d; border: 1px solid #333; padding: 8px; font-size: 11px; white-space: pre-wrap; max-height: 120px; overflow: auto; color: #9c9; }
+    .row button.rec { background: #633; border-color: #a55; }
+    .row button.danger { background: #422; border-color: #844; color: #fcc; }
+    .hid { display: none !important; }
+    .recbox { border-color: #744; }
+    .row button.rec.on { background: #c22; border-color: #f66; color: #fff; font-weight: 700; }
+    .row button.rec.wait { background: #753; border-color: #a83; }
+    .recbar { margin: 0 14px 10px; padding: 10px 12px; font-weight: 700; text-align: center; border: 1px solid #444; }
+    .recbar.off { background: #1c1c1c; color: #888; }
+    .recbar.on { background: #b21; color: #fff; border-color: #f55; }
+    .recbar.wait { background: #642; color: #fc8; }
+    header a { color: #8cf; }
+  </style>
+</head>
+<body data-mode="eyes">
+  <header>
+    <b>ферма</b>
+    <span class="muted" id="meta"></span>
+    <span id="nowPlay" class="muted">в VM сейчас: fsm</span>
+    <a href="/brain">логи</a>
+  </header>
+  <div class="modes">
+    <button type="button" data-mode="eyes" class="on">зрение</button>
+    <button type="button" data-mode="record">запись</button>
+    <button type="button" data-mode="correct">коррекция</button>
+    <button type="button" data-mode="train">обучение</button>
+  </div>
+  <p class="modeHint" id="modeHint"></p>
+  <div id="jsErr"></div>
+  <div class="banner" id="modeBanner">сейчас: размечаешь глаза. бот в матче не меняется.</div>
+  <div id="recBar" class="recbar off for-record">ЗАПИСЬ ВЫКЛ</div>
+  <div class="layer span2 recbox for-record" id="recPanel" style="margin: 0 14px 10px">
+    <b>запись твоей игры</b>
+    <span class="muted">сначала farm.bat stop. CS2 в фокусе в VM. потом красная кнопка. пишет D:/FarmVMs/ops/vision/human-record/</span>
+    <div class="row" id="recIdle">
+      <button type="button" class="rec" id="recStart">начать запись</button>
+    </div>
+    <div class="row hid" id="recLive">
+      <button type="button" class="pri" id="recKeep">сохранить запись</button>
+      <button type="button" class="danger" id="recDrop">отменить, не сохранять</button>
+    </div>
+    <div class="picknow" id="recNow">сейчас: не пишем</div>
+  </div>
+  <main>
+    <div class="left">
+      <div class="layer for-eyes-extra">
+        <b>1. разметить глаза</b>
+        <span class="muted">только картинка + боксы игроков/стен. не учит ходьбу. не меняет кто играет в VM.</span>
+        <div class="picknow" id="packNow">боксов 0</div>
+        <div class="row">
+          <button type="button" class="pri" id="save">сохранить боксы</button>
+          <button type="button" id="refresh">новый кадр</button>
+          <button type="button" id="undo">undo бокс</button>
+        </div>
+      </div>
+    <div class="stage">
+      <img id="bg" alt="live" />
+      <canvas id="cv"></canvas>
+    </div>
+      <div class="layer for-correct">
+        <b>3. поправить бота руками</b>
+        <span class="muted">это телеоп / freeze. не YOLO. не датасет ходьбы.</span>
+        <div class="row">
+          <button type="button" class="pri" id="gradeGood">играть ок, заморозить</button>
+          <button type="button" class="danger" id="gradeBad">плохо, откатить</button>
+          <button type="button" id="saveIntent">дать команду сейчас (intent)</button>
+        </div>
+        <div class="picknow" id="lockNow"></div>
+      </div>
+      <div class="layer for-train">
+        <div class="split2">
+          <div class="layer card-train">
+            <b>обучить (файлы на диске)</b>
+            <span class="muted">бот в VM не переключается</span>
+            <div class="row">
+              <button type="button" id="trainEyes">A. public YOLO (скачать+train, не руками)</button>
+              <button type="button" id="runQc">B. проверка записей ходьбы</button>
+              <button type="button" id="trainBc">C. старый BC (не включать)</button>
+            </div>
+          </div>
+          <div class="layer card-play">
+            <b>кто водит в VM</b>
+            <span class="muted">отдельный шаг. сначала выбери, потом подтверди.</span>
+            <p class="muted" id="playExplain">FSM: эвристики (baseline). skills: PID+kalman+A*+waypoint, YOLO только детект. walk: только ходьба по радару.</p>
+            <select id="policySel">
+              <option value="fsm">FSM (правила, сейчас baseline)</option>
+              <option value="walk">навык ходьба</option>
+              <option value="skills">skills: классика (PID/A*, confirm)</option>
+              <option value="bandit">bandit (старый)</option>
+              <option value="bc">старый BC (слабый, не надо)</option>
+            </select>
+            <div class="row" style="margin-top:8px">
+              <button type="button" class="pri" id="policyGo">включить выбранное в VM</button>
+            </div>
+          </div>
+        </div>
+        <pre class="sublog" id="mlStatus">нет прогона</pre>
+      </div>
+      <div id="reply" class="reply"></div>
+    </div>
+    <aside>
+      <div class="layer span2 for-eyes-classes">
+        <b>что обводить (объекты)</b>
+        <span class="muted">не обводи «развернуться / climb / смотреть» - это не глаза, это команды</span>
+        <div class="cls">
+          <button id="c0" data-cls="0">CT тело</button>
+          <button id="c1" data-cls="1">CT голова</button>
+          <button id="c2" data-cls="2">T тело</button>
+          <button id="c3" data-cls="3">T голова</button>
+          <button id="c4" data-cls="4">стена</button>
+          <button id="c5" class="cmd" data-cls="5" title="не объект" disabled>не глаз: разворот</button>
+          <button id="c6" class="cmd" data-cls="6" title="не объект" disabled>не глаз: climb</button>
+          <button id="c7" data-cls="7">укрытие</button>
+          <button id="c8" class="cmd" data-cls="8" disabled>не глаз: сброс</button>
+          <button id="c9" class="cmd" data-cls="9" disabled>не глаз: смотреть</button>
+          <button id="c10" data-cls="10">калаш/авик на полу</button>
+          <button id="c11" data-cls="11">труп</button>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <button type="button" id="undoBox">отменить последний бокс</button>
+          <button type="button" id="clearBoxes">сбросить все боксы на кадре</button>
+        </div>
+        <div class="picknow" id="boxNow">боксов на кадре: 0</div>
+        <pre class="see" id="eyesSee">видит: …</pre>
+        <pre class="think" id="eyesThink">думает: …</pre>
+        <pre class="sublog eyes" id="eyesLog">лог глаз пустой</pre>
+      </div>
+      <div class="layer for-correct">
+        <b>HUD</b>
+        <span class="muted">всё кроме радара: ствол, патроны, $, броня, раунд, бомба, freeze, спект</span>
+        <pre class="see" id="hudSee">видит: …</pre>
+        <pre class="think" id="hudThink">думает: …</pre>
+        <div class="row" id="timings">
+          <button type="button" data-timing="auto">часы вкл</button>
+          <button type="button" data-timing="off">часы выкл</button>
+        </div>
+        <textarea id="hudNote" placeholder="ты говоришь freeze, на самом деле live. бомба на B, магазин пустой жми R"></textarea>
+        <pre class="sublog hudch" id="hudLog">лог hud пустой</pre>
+      </div>
+      <div class="layer for-correct">
+        <b>радар</b>
+        <span class="muted">миникарта. жёлтый круг на кадре = кроп. правь метки/путь текстом</span>
+        <div class="radarbox">
+          <div>
+            <img id="radarCrop" alt="radar crop" src="/radar.png" />
+            <div class="cap">вход анализа</div>
+          </div>
+          <div>
+            <img id="radarPaths" alt="radar paths" src="/radar-paths.png" />
+            <div class="cap">стены / я / луч</div>
+          </div>
+        </div>
+        <pre class="see" id="radarSee">видит: …</pre>
+        <pre class="think" id="radarThink">думает: …</pre>
+        <textarea id="radarNote" placeholder="врага пометил зря, это союз. путь через мид не через апс"></textarea>
+        <pre class="sublog radar" id="radarLog">лог радара пустой</pre>
+      </div>
+      <div class="layer for-correct">
+        <b>ходьба</b>
+        <pre class="see" id="walkSee">видит: …</pre>
+        <pre class="think" id="walkThink">думает: …</pre>
+        <div class="row" id="walks">
+          <button type="button" data-walk="walk-w">прямо W</button>
+          <button type="button" data-walk="walk-wa">влево W+A</button>
+          <button type="button" data-walk="walk-wd">вправо W+D</button>
+          <button type="button" data-walk="walk-a">A</button>
+          <button type="button" data-walk="walk-d">D</button>
+          <button type="button" data-walk="walk-s">назад</button>
+          <button type="button" data-walk="wait">стоять</button>
+        </div>
+        <div class="picknow" id="walkNow">выбрано: влево W+A</div>
+        <textarea id="walkNote" placeholder="не стой в смоке, жми W+A вдоль стены"></textarea>
+        <pre class="sublog walk" id="walkLog">лог ходьбы пустой</pre>
+      </div>
+      <div class="layer for-correct">
+        <b>мышь</b>
+        <pre class="see" id="aimSee">видит: …</pre>
+        <pre class="think" id="aimThink">думает: …</pre>
+        <div class="row" id="aims">
+          <button type="button" data-aim="yolo-head">голова YOLO</button>
+          <button type="button" data-aim="yolo-body">тело YOLO</button>
+          <button type="button" data-aim="">не целиться</button>
+        </div>
+        <div class="picknow" id="aimNow">выбрано: голова YOLO</div>
+        <textarea id="aimNote" placeholder="не тяни в пол, голова чуть выше кросса"></textarea>
+        <pre class="sublog aim" id="aimLog">лог мыши пустой</pre>
+      </div>
+    </aside>
+  </main>
+  <script>
+    window.onerror = function (msg) {
+      const el = document.getElementById("jsErr");
+      if (!el) return;
+      el.style.display = "block";
+      el.textContent = "js сломался, вкладки мертвы: " + msg;
+    };
+  </script>
+  <script>
+    const LABELS = ["CT тело", "CT голова", "T тело", "T голова", "стена", "развернуться", "climb jump+W", "укрытие", "сброс вниз", "смотреть сюда", "калаш/авик на полу", "труп"];
+    const NAMES = ["c", "ch", "t", "th", "wall", "turn", "climb", "cover", "drop", "look", "gun", "dead"];
+    const COLORS = ["#66ccff", "#99ddff", "#ffaa66", "#ff8866", "#cc4444", "#44cc88", "#44cccc", "#ddaa66", "#cc66cc", "#aaaa44", "#88ff66", "#9a8a7a"];
+    let yoloDets = [];
+    let cls = 1;
+    let boxes = [];
+    let drag = null;
+    const bg = document.getElementById("bg");
+    const cv = document.getElementById("cv");
+    const ctx = cv.getContext("2d");
+
+    function setCls(n) {
+      cls = n;
+      document.querySelectorAll(".cls button").forEach((b) => b.classList.toggle("on", Number(b.dataset.cls) === n));
+    }
+    document.querySelectorAll(".cls button").forEach((b) => {
+      b.onclick = () => { if (b.disabled) return; setCls(Number(b.dataset.cls)); };
+    });
+    setCls(1);
+    const HINTS = {
+      eyes: "зрение = только боксы на кадре. не учит W/A/D. не меняет кто играет.",
+      record: "запись = твоя рука в VM. не YOLO. train сам не стартует.",
+      correct: "коррекция = команда боту прямо сейчас. не датасет глаз и не train.",
+      train: "обучение: слева файлы, справа мозг VM. это две разные штуки."
+    };
+    const BANNERS = {
+      eyes: "сейчас: размечаешь ГЛАЗА. бот в матче играет как раньше.",
+      record: "сейчас: пишешь СВОЮ игру. бот должен отпустить клавиши.",
+      correct: "сейчас: правишь бота В ЭТОМ КАДРЕ (intent / freeze).",
+      train: "слева ОБУЧИТЬ файлы. справа ВКЛЮЧИТЬ кто водит VM. не путай кнопки."
+    };
+    function setMode(m) {
+      document.body.dataset.mode = m;
+      document.querySelectorAll(".modes button").forEach((b) => b.classList.toggle("on", b.dataset.mode === m));
+      const h = document.getElementById("modeHint");
+      if (h) h.textContent = HINTS[m] || "";
+      const ban = document.getElementById("modeBanner");
+      if (ban) ban.textContent = BANNERS[m] || "";
+    }
+    document.querySelectorAll(".modes button").forEach((b) => {
+      b.onclick = () => setMode(b.dataset.mode);
+    });
+
+    function nat() {
+      return { w: bg.naturalWidth || 1, h: bg.naturalHeight || 1, dw: bg.clientWidth || 1, dh: bg.clientHeight || 1 };
+    }
+    function toNorm(px, py, pw, ph) {
+      const { w, h, dw, dh } = nat();
+      const sx = w / dw, sy = h / dh;
+      const x0 = Math.min(px, px + pw) * sx, y0 = Math.min(py, py + ph) * sy;
+      const x1 = Math.max(px, px + pw) * sx, y1 = Math.max(py, py + ph) * sy;
+      const bw = (x1 - x0) / w, bh = (y1 - y0) / h;
+      return { cls, cx: (x0 / w) + bw / 2, cy: (y0 / h) + bh / 2, w: bw, h: bh };
+    }
+    let radarCrop = null;
+    function draw() {
+      const { dw, dh } = nat();
+      cv.width = dw; cv.height = dh;
+      cv.style.width = dw + "px"; cv.style.height = dh + "px";
+      ctx.clearRect(0, 0, dw, dh);
+      const { w, h } = nat();
+      if (radarCrop && radarCrop.w > 8 && radarCrop.h > 8 && w > 1 && h > 1) {
+        ctx.strokeStyle = "#ffe14d";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 3]);
+        if (Number(radarCrop.r) > 8) {
+          ctx.beginPath();
+          ctx.ellipse(
+            (Number(radarCrop.cx) / w) * dw,
+            (Number(radarCrop.cy) / h) * dh,
+            (Number(radarCrop.r) / w) * dw,
+            (Number(radarCrop.r) / h) * dh,
+            0, 0, Math.PI * 2
+          );
+          ctx.stroke();
+        } else {
+          ctx.strokeRect(
+            (radarCrop.ox / w) * dw,
+            (radarCrop.oy / h) * dh,
+            (radarCrop.w / w) * dw,
+            (radarCrop.h / h) * dh
+          );
+        }
+        ctx.setLineDash([]);
+        ctx.fillStyle = "#ffe14d";
+        ctx.fillText("radar cv", (radarCrop.ox / w) * dw + 4, (radarCrop.oy / h) * dh + 12);
+      }
+      for (const b of boxes) {
+        const x = (b.cx - b.w / 2) * dw;
+        const y = (b.cy - b.h / 2) * dh;
+        ctx.strokeStyle = COLORS[b.cls] || "#fff";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, b.w * dw, b.h * dh);
+        ctx.fillStyle = COLORS[b.cls] || "#fff";
+        ctx.fillText(LABELS[b.cls] || NAMES[b.cls] || "?", x + 4, y + 12);
+      }
+      const bn = document.getElementById("boxNow");
+      if (bn) bn.textContent = "боксов на кадре: " + boxes.length;
+      if (typeof paintPack === "function") paintPack();
+      if (drag) {
+        ctx.strokeStyle = "#fff";
+        ctx.strokeRect(drag.x, drag.y, drag.w, drag.h);
+      }
+    }
+    function pos(e) {
+      const r = cv.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+    cv.onmousedown = (e) => { const p = pos(e); drag = { x: p.x, y: p.y, w: 0, h: 0 }; };
+    window.onmousemove = (e) => {
+      if (!drag) return;
+      const p = pos(e);
+      drag.w = p.x - drag.x; drag.h = p.y - drag.y;
+      draw();
+    };
+    window.onmouseup = () => {
+      if (!drag) return;
+      if (Math.abs(drag.w) > 6 && Math.abs(drag.h) > 6) boxes.push(toNorm(drag.x, drag.y, drag.w, drag.h));
+      drag = null;
+      draw();
+      preview();
+    };
+    window.onkeydown = (e) => {
+      if (e.key >= "1" && e.key <= "9") setCls(Number(e.key) - 1);
+      if (e.key === "0") setCls(9);
+      if (e.key === "Backspace" || e.key === "Delete") { boxes.pop(); draw(); preview(); }
+    };
+
+    let walk = "walk-wa";
+    let aim = "yolo-head";
+    let timing = "auto";
+    function markPick(sel, attr, val) {
+      document.querySelectorAll(sel + " button").forEach((b) => b.classList.toggle("on", (b.getAttribute(attr) || "") === val));
+    }
+    const WALK_SAY = { "walk-w": "прямо W", "walk-wa": "влево W+A", "walk-wd": "вправо W+D", "walk-a": "A", "walk-d": "D", "walk-s": "назад", wait: "стоять" };
+    const AIM_SAY = { "yolo-head": "голова YOLO", "yolo-body": "тело YOLO", "": "не целиться" };
+    function paintPicks() {
+      markPick("#walks", "data-walk", walk);
+      markPick("#aims", "data-aim", aim);
+      markPick("#timings", "data-timing", timing);
+      document.getElementById("walkNow").textContent = "выбрано: " + (WALK_SAY[walk] || walk);
+      document.getElementById("aimNow").textContent = "выбрано: " + (AIM_SAY[aim] || aim || "не целиться");
+      paintPack();
+    }
+    function gatherLesson() {
+      const hudNote = (document.getElementById("hudNote").value || "").trim();
+      const radarNote = (document.getElementById("radarNote").value || "").trim();
+      const walkNote = (document.getElementById("walkNote").value || "").trim();
+      const aimNote = (document.getElementById("aimNote").value || "").trim();
+      return {
+        boxes,
+        hudNote,
+        radarNote,
+        walkNote,
+        aimNote,
+        world: hudNote,
+        clockNote: hudNote,
+        walk,
+        aim,
+        timing,
+        note: [hudNote, radarNote, walkNote, aimNote].filter(Boolean).join("\n"),
+        action: walk
+      };
+    }
+    function paintPack() {
+      const el = document.getElementById("packNow");
+      if (!el) return;
+      el.textContent = "боксов на этом кадре: " + boxes.length + "  →  сохранить только глаза";
+    }
+    document.querySelectorAll("#walks button").forEach((b) => {
+      b.onclick = () => { walk = b.getAttribute("data-walk") || ""; paintPicks(); preview(); };
+    });
+    document.querySelectorAll("#aims button").forEach((b) => {
+      b.onclick = () => { aim = b.getAttribute("data-aim") || ""; paintPicks(); preview(); };
+    });
+    document.querySelectorAll("#timings button").forEach((b) => {
+      b.onclick = () => { timing = b.getAttribute("data-timing") || "auto"; paintPicks(); };
+    });
+    paintPicks();
+
+    function preview() {}
+    document.getElementById("hudNote").oninput = () => { paintPack(); };
+    document.getElementById("radarNote").oninput = paintPack;
+    document.getElementById("walkNote").oninput = paintPack;
+    document.getElementById("aimNote").oninput = paintPack;
+
+    function loadFrame(t) {
+      bg.onload = () => {
+        fetch("/api/hud").then((r) => r.json()).then((j) => {
+          yoloDets = Array.isArray(j.yoloDets) ? j.yoloDets : [];
+          draw();
+        }).catch(() => draw());
+      };
+      bg.src = "/live.png?t=" + (t || Date.now());
+      bg.onerror = () => {
+        const np = document.getElementById("nowPlay");
+        if (np) np.textContent = "нет live.png. включи бота (farm play/loop)";
+      };
+    }
+
+    function setText(id, s) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = s;
+    }
+    function fillLog(id, text, empty) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = String(text || "").trim() || empty;
+    }
+    async function hud() {
+      const r = await fetch("/api/hud");
+      const j = await r.json();
+      document.getElementById("meta").textContent = "";
+      document.getElementById("radarCrop").src = "/radar.png?t=" + Date.now();
+      document.getElementById("radarPaths").src = "/radar-paths.png?t=" + Date.now();
+      radarCrop = j.radarCrop && j.radarCrop.w ? j.radarCrop : null;
+      draw();
+      const p = j.parts || {};
+      setText("eyesSee", "видит: " + (p.eyes?.see || ("yolo " + (j.yoloN ?? 0))));
+      setText("eyesThink", "думает: " + (p.eyes?.think || "-"));
+      setText("hudSee", "видит:\n" + (p.hud?.see || "-"));
+      setText("hudThink", "думает: " + (p.hud?.think || "-"));
+      setText("radarSee", "видит: " + (p.radar?.see || "-"));
+      setText("radarThink", "думает: " + (p.radar?.think || "-"));
+      setText("walkSee", "видит: " + (p.walk?.see || "-"));
+      setText("walkThink", "думает: " + (p.walk?.think || "-"));
+      setText("aimSee", "видит: " + (p.aim?.see || "-"));
+      setText("aimThink", "думает: " + (p.aim?.think || "-"));
+      fillLog("eyesLog", j.chanLogs?.eyes, "лог глаз пустой");
+      fillLog("hudLog", j.chanLogs?.hud, "лог hud пустой");
+      fillLog("radarLog", j.chanLogs?.radar, "лог радара пустой");
+      fillLog("walkLog", j.chanLogs?.walk, "лог ходьбы пустой");
+      fillLog("aimLog", j.chanLogs?.aim, "лог мыши пустой");
+      const t = String(j.team || "").toUpperCase();
+      if (!window._clsLock) {
+        if (t === "T" || t === "TERRORIST") setCls(0);
+        else if (t === "CT") setCls(2);
+        window._clsLock = t;
+      } else if (window._clsLock !== t && t) {
+        window._clsLock = t;
+        if (t === "T" || t === "TERRORIST") setCls(0);
+        else if (t === "CT") setCls(2);
+      }
+      paintRec(j.record, false);
+      const pol = j.policy || {};
+      const pend = pol.pending && pol.pending.id;
+      const np = document.getElementById("nowPlay");
+      if (np) {
+        let t = "в VM играет: " + (pol.id || "fsm");
+        if (pend && pend !== pol.id) t += "  |  в списке выбрано " + pend + " (ещё не включено)";
+        if (!j.hasLive) t += "  |  нет кадра";
+        np.textContent = t;
+      }
+      const ml = document.getElementById("mlStatus");
+      if (ml) {
+        const ds = j.dataset || {};
+        const ev = j.lastBcEval || {};
+        ml.textContent =
+          "записи ходьбы: ok=" + (ds.ok ?? "-") + " карантин=" + ((ds.quarantine && ds.quarantine.length) || 0) +
+          "\nархив BC (не текущее обучение): acc=" + (ev.bc && ev.bc.acc && ev.bc.acc.acc) +
+          " walk=" + (ev.scenario && ev.scenario.success);
+      }
+      const lock = j.lock || {};
+      const lockEl = document.getElementById("lockNow");
+      if (lockEl) {
+        lockEl.textContent = lock.freeze ? "зафиксировано" : (lock.vote === "bad" ? "откатил, снова ищет" : "");
+      }
+    }
+    function showReply(j, pack) {
+      const el = document.getElementById("reply");
+      if (!el) return;
+      if (!j || j.ok === false) {
+        el.textContent = "НЕ УШЛО. " + (j && (j.error || j.say) || "сервер не ответил");
+        el.className = "reply no";
+        return;
+      }
+      const mode = document.body.dataset.mode || "eyes";
+      const lines = [];
+      if (mode === "correct") {
+        lines.push("телеоп ушёл. YOLO и записи ходьбы не трогал.");
+        if (j.saved && j.saved.intent) lines.push("intent: " + j.saved.intent);
+      } else {
+        lines.push("сохранил ГЛАЗА. ходьбу и policy VM не менял.");
+        lines.push("боксов: " + ((pack && pack.boxes) || []).length);
+        if (j.id) lines.push("id: " + j.id);
+        if (j.saved && j.saved.eyes) lines.push("png: " + j.saved.eyes);
+        if (j.saved && j.saved.labels) lines.push("labels: " + j.saved.labels);
+        lines.push("чтобы обучить YOLO: вкладка обучение → кнопка A.");
+      }
+      el.textContent = lines.join("\n");
+      el.className = "reply yes";
+    }
+    function clearNotes() {
+      for (const id of ["hudNote", "radarNote", "walkNote", "aimNote"]) {
+        const n = document.getElementById(id);
+        if (n) n.value = "";
+      }
+    }
+    async function sendPrompt() {
+      const btn = document.getElementById("save");
+      if (btn.disabled) return;
+      btn.disabled = true;
+      paintPack();
+      const pack = gatherLesson();
+      try {
+        const r = await fetch("/api/save", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(pack)
+        });
+        const j = await r.json().catch(() => ({ ok: false, error: "bad json" }));
+        showReply(j, pack);
+        if (j && j.ok !== false) {
+          boxes = [];
+          clearNotes();
+          draw();
+          loadFrame(j.liveAt || Date.now());
+          paintPack();
+        }
+      } catch (e) {
+        showReply({ ok: false, error: String(e.message || e) }, pack);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+    async function sendIntent() {
+      paintPack();
+      const pack = gatherLesson();
+      const r = await fetch("/api/prompt", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(pack)
+      });
+      const j = await r.json().catch(() => ({}));
+      showReply(j, pack);
+    }
+    function paintRec(r, wait) {
+      const bar = document.getElementById("recBar");
+      const idle = document.getElementById("recIdle");
+      const live = document.getElementById("recLive");
+      const now = document.getElementById("recNow");
+      const startBtn = document.getElementById("recStart");
+      if (wait) {
+        bar.className = "recbar wait for-record";
+        bar.textContent = "запись: жду...";
+        now.textContent = "сейчас: жду";
+        startBtn.disabled = true;
+        return;
+      }
+      startBtn.disabled = false;
+      const on = Boolean(r && (r.on || r.starting));
+      idle.classList.toggle("hid", on);
+      live.classList.toggle("hid", !on);
+      if (r && r.starting && !r.on) {
+        bar.className = "recbar wait for-record";
+        bar.textContent = "запись стартует...";
+        now.textContent = "сейчас: стартую";
+        return;
+      }
+      if (r && r.on) {
+        bar.className = "recbar on for-record";
+        bar.textContent = "ЗАПИСЬ ИДЁТ  " + (r.session || "") + "  fire=" + (r.fires || 0) + "  keys=" + (r.keys || 0) + "  gsi=" + (r.gsi || 0) + "  кадры=" + (r.frames || 0) + "  samples=" + (r.samples || 0);
+        now.textContent = "сейчас: пишем " + (r.session || "");
+        return;
+      }
+      bar.className = "recbar off for-record";
+      bar.textContent = "запись выкл (это не YOLO и не смена мозга)";
+      now.textContent = "сейчас: не пишем";
+    }
+    function recLine(r) {
+      if (!r || !r.on) return "RECORD выкл";
+      return "RECORD ON " + (r.session || "") + " fire=" + (r.fires || 0) + " gsi=" + (r.gsi || 0) + " frames=" + (r.frames || 0) + " samples=" + (r.samples || 0);
+    }
+    async function recPost(action) {
+      paintRec(null, true);
+      const r = await fetch("/api/play-record", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ action: action || "start" })
+      });
+      const j = await r.json();
+      paintRec(j.record, false);
+      hud();
+    }
+    document.getElementById("recStart").onclick = () => recPost("start");
+    document.getElementById("recKeep").onclick = () => recPost("keep");
+    document.getElementById("recDrop").onclick = () => recPost("drop");
+    document.getElementById("save").onclick = sendPrompt;
+    const saveIntent = document.getElementById("saveIntent");
+    if (saveIntent) saveIntent.onclick = sendIntent;
+    async function grade(vote) {
+      await fetch("/api/grade", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ vote })
+      });
+      hud();
+    }
+    document.getElementById("gradeGood").onclick = () => grade("good");
+    document.getElementById("gradeBad").onclick = () => grade("bad");
+    document.getElementById("trainEyes").onclick = async () => {
+      const r = await fetch("/api/train-eyes", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+      const j = await r.json().catch(() => ({}));
+      const el = document.getElementById("reply");
+      if (el) {
+        el.className = "reply yes";
+        el.textContent = "очередь YOLO. кто играет в VM не менялся. " + (j.log || j.say || "ok");
+      }
+    };
+    document.getElementById("hudNote").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        sendIntent();
+      }
+    });
+    setInterval(() => { hud(); }, 700);
+    document.getElementById("refresh").onclick = async () => {
+      boxes = [];
+      draw();
+      const r = await fetch("/api/refresh", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+      const j = await r.json().catch(() => ({}));
+      loadFrame(j.liveAt || Date.now());
+      preview();
+    };
+    function undoLastBox() {
+      boxes.pop();
+      draw();
+      preview();
+    }
+    function clearAllBoxes() {
+      boxes = [];
+      draw();
+      preview();
+    }
+    document.getElementById("undo").onclick = undoLastBox;
+    document.getElementById("undoBox").onclick = undoLastBox;
+    document.getElementById("clearBoxes").onclick = clearAllBoxes;
+    const policySel = document.getElementById("policySel");
+    if (policySel) {
+      policySel.onchange = async () => {
+        await fetch("/api/policy", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ id: policySel.value })
+        });
+        hud();
+      };
+    }
+    const policyGo = document.getElementById("policyGo");
+    if (policyGo) {
+      policyGo.onclick = async () => {
+        const id = (document.getElementById("policySel") || {}).value || "fsm";
+        const r = await fetch("/api/policy-activate", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ id, confirm: true })
+        });
+        const j = await r.json().catch(() => ({}));
+        const el = document.getElementById("reply");
+        if (el) { el.className = "reply yes"; el.textContent = "в VM включил: " + id + ". train не запускал. " + (j.say || ""); }
+        hud();
+      };
+    }
+    const runQc = document.getElementById("runQc");
+    if (runQc) {
+      runQc.onclick = async () => {
+        const r = await fetch("/api/dataset-qc", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+        const j = await r.json().catch(() => ({}));
+        const el = document.getElementById("mlStatus");
+        if (el) el.textContent = j.say || JSON.stringify(j.dataset && { ok: j.dataset.ok, q: j.dataset.quarantine });
+      };
+    }
+    const trainBc = document.getElementById("trainBc");
+    if (trainBc) {
+      trainBc.onclick = async () => {
+        const r = await fetch("/api/train-bc", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+        const j = await r.json().catch(() => ({}));
+        const el = document.getElementById("mlStatus");
+        if (el) el.textContent = j.say || "train-bc";
+      };
+    }
+
+    fetch("/api/state").then((r) => r.json()).then(() => {});
+    setMode("eyes");
+    loadFrame();
+  </script>
+</body>
+</html>

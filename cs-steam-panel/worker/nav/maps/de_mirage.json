@@ -1,0 +1,18 @@
+{
+  "map": "de_mirage",
+  "zLevels": ["site", "mid", "palace"],
+  "nodes": [
+    { "id": "t_spawn", "nx": 0.82, "ny": 0.45, "z": "mid", "links": ["palace", "topmid", "ramp"] },
+    { "id": "palace", "nx": 0.72, "ny": 0.74, "z": "palace", "links": ["t_spawn", "ramp", "a"] },
+    { "id": "ramp", "nx": 0.64, "ny": 0.55, "z": "mid", "links": ["t_spawn", "palace", "a", "mid"] },
+    { "id": "a", "nx": 0.48, "ny": 0.68, "z": "site", "links": ["ramp", "palace", "ticket", "jungle"] },
+    { "id": "ticket", "nx": 0.4, "ny": 0.78, "z": "site", "links": ["a", "ct_spawn"] },
+    { "id": "mid", "nx": 0.48, "ny": 0.44, "z": "mid", "links": ["ramp", "topmid", "jungle", "catwalk"] },
+    { "id": "topmid", "nx": 0.68, "ny": 0.38, "z": "mid", "links": ["t_spawn", "mid", "catwalk"] },
+    { "id": "catwalk", "nx": 0.5, "ny": 0.32, "z": "mid", "links": ["topmid", "mid", "b"] },
+    { "id": "jungle", "nx": 0.34, "ny": 0.44, "z": "mid", "links": ["mid", "a", "ct_spawn", "kitchen"] },
+    { "id": "ct_spawn", "nx": 0.26, "ny": 0.55, "z": "mid", "links": ["jungle", "ticket", "kitchen"] },
+    { "id": "kitchen", "nx": 0.22, "ny": 0.34, "z": "mid", "links": ["jungle", "ct_spawn", "b"] },
+    { "id": "b", "nx": 0.22, "ny": 0.18, "z": "site", "links": ["kitchen", "catwalk"] }
+  ]
+}

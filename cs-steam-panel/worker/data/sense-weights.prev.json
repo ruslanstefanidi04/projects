@@ -1,0 +1,2422 @@
+{
+  "live_ct_open_foe": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 20,
+      "sum": 15.999999999999998
+    },
+    "fight-peek": {
+      "n": 17,
+      "sum": 15.740722610722624
+    },
+    "fight-push": {
+      "n": 3,
+      "sum": 3.5376923076923075
+    },
+    "check-corner": {
+      "n": 175,
+      "sum": 56.587533799533844
+    },
+    "strafe-advance": {
+      "n": 68,
+      "sum": 85.301
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 5,
+      "sum": 6.25
+    },
+    "radar-turn": {
+      "n": 48,
+      "sum": 24.50333333333335
+    },
+    "radar-chase": {
+      "n": 10,
+      "sum": 9.073636363636368
+    },
+    "radar-open": {
+      "n": 19,
+      "sum": 23.583333333333336
+    }
+  },
+  "live_ct_open_clear": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 61,
+      "sum": 30.68999999999997
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 12,
+      "sum": 10.199999999999998
+    },
+    "unstick-wall": {
+      "n": 76,
+      "sum": 27.730606060606043
+    },
+    "fight-peek": {
+      "n": 11,
+      "sum": 14.886666666666676
+    },
+    "fight-push": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "check-corner": {
+      "n": 1338,
+      "sum": 459.2388158508078
+    },
+    "strafe-advance": {
+      "n": 1064,
+      "sum": 1341.785714840715
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 717,
+      "sum": 906.5939999999999
+    },
+    "radar-turn": {
+      "n": 1243,
+      "sum": 495.6987334887255
+    },
+    "radar-chase": {
+      "n": 12,
+      "sum": 14.130000000000004
+    },
+    "radar-open": {
+      "n": 1175,
+      "sum": 1470.106923076923
+    }
+  },
+  "live_t_open_foe": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 1,
+      "sum": 0.85
+    },
+    "fight-peek": {
+      "n": 3,
+      "sum": 2.9300000000000006
+    },
+    "fight-push": {
+      "n": 12,
+      "sum": 13.608000000000004
+    },
+    "check-corner": {
+      "n": 36,
+      "sum": 11.520000000000005
+    },
+    "strafe-advance": {
+      "n": 17,
+      "sum": 21.903333333333332
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 2,
+      "sum": 2.5
+    },
+    "radar-turn": {
+      "n": 22,
+      "sum": 9.350000000000003
+    },
+    "radar-chase": {
+      "n": 20,
+      "sum": 24.217846153846164
+    },
+    "radar-open": {
+      "n": 16,
+      "sum": 20.193846153846152
+    }
+  },
+  "live_t_open_clear": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 11,
+      "sum": 4.3999999999999995
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 38,
+      "sum": 27.50000000000001
+    },
+    "fight-peek": {
+      "n": 1,
+      "sum": 1.4173333333333336
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 579,
+      "sum": 187.8442051282025
+    },
+    "strafe-advance": {
+      "n": 533,
+      "sum": 666.0939720279731
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 594,
+      "sum": 725.846
+    },
+    "radar-turn": {
+      "n": 525,
+      "sum": 210.36159401709085
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 736,
+      "sum": 920.2658741258741
+    }
+  },
+  "live_ct_exec_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 56,
+      "sum": -17.279999999999994
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 31,
+      "sum": 8.41113636363637
+    },
+    "strafe-advance": {
+      "n": 30,
+      "sum": 37.13636363636364
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 22,
+      "sum": 27.5
+    },
+    "radar-turn": {
+      "n": 23,
+      "sum": 7.4025000000000025
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 21,
+      "sum": 26.25
+    }
+  },
+  "live_ct_exec_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 2,
+      "sum": 0.64
+    },
+    "strafe-advance": {
+      "n": 9,
+      "sum": 11.25
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 23,
+      "sum": 9.099999999999998
+    },
+    "radar-turn": {
+      "n": 25,
+      "sum": 8.000000000000002
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 2,
+      "sum": 2.5
+    }
+  },
+  "live_ct_wall_clear": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 24,
+      "sum": 20.593846153846158
+    },
+    "fight-peek": {
+      "n": 3,
+      "sum": 2.8166666666666673
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 460,
+      "sum": 162.92186013985813
+    },
+    "strafe-advance": {
+      "n": 349,
+      "sum": 437.7897435897436
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 230,
+      "sum": 281.85475524475515
+    },
+    "radar-turn": {
+      "n": 254,
+      "sum": 80.41906604506573
+    },
+    "radar-chase": {
+      "n": 2,
+      "sum": 3.36
+    },
+    "radar-open": {
+      "n": 214,
+      "sum": 267
+    }
+  },
+  "live_ct_wall_foe": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 5,
+      "sum": 4.083333333333333
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 155,
+      "sum": 49.2341538461539
+    },
+    "strafe-advance": {
+      "n": 87,
+      "sum": 110.99861538461536
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 43,
+      "sum": 55.33646153846153
+    },
+    "radar-turn": {
+      "n": 32,
+      "sum": 15.037692307692314
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 46,
+      "sum": 59.63230769230768
+    }
+  },
+  "live_ct_planted_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 30,
+      "sum": 47.76923076923074
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 30,
+      "sum": 10.590769230769238
+    },
+    "fight-peek": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "fight-push": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "check-corner": {
+      "n": 164,
+      "sum": 63.87589743589739
+    },
+    "strafe-advance": {
+      "n": 127,
+      "sum": 147.72871794871799
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 80,
+      "sum": 114.59999999999998
+    },
+    "radar-turn": {
+      "n": 83,
+      "sum": 26.254871794871807
+    },
+    "radar-chase": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "radar-open": {
+      "n": 39,
+      "sum": 49.336666666666666
+    }
+  },
+  "live_ct_planted_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 3,
+      "sum": 4.199999999999999
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 1,
+      "sum": 1.0438461538461539
+    },
+    "fight-peek": {
+      "n": 1,
+      "sum": 0.8833333333333334
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 88,
+      "sum": 33.127179487179504
+    },
+    "strafe-advance": {
+      "n": 29,
+      "sum": 38.980000000000004
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 61,
+      "sum": 61.4353846153846
+    },
+    "radar-turn": {
+      "n": 5,
+      "sum": -1.3400000000000003
+    },
+    "radar-chase": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "radar-open": {
+      "n": 21,
+      "sum": 26.25
+    }
+  },
+  "live_t_exec_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 11,
+      "sum": 4.3999999999999995
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 5,
+      "sum": 3.05
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 33,
+      "sum": 10.560000000000004
+    },
+    "strafe-advance": {
+      "n": 9,
+      "sum": 11.25
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": 1.25
+    },
+    "radar-turn": {
+      "n": 41,
+      "sum": 13.120000000000006
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  },
+  "live_t_wall_clear": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 2,
+      "sum": 1.7
+    },
+    "unstick-wall": {
+      "n": 10,
+      "sum": 8.499999999999998
+    },
+    "fight-peek": {
+      "n": 9,
+      "sum": 7.995454545454548
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 136,
+      "sum": 41.35025058275062
+    },
+    "strafe-advance": {
+      "n": 89,
+      "sum": 110.91666666666667
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 60,
+      "sum": 48.420000000000016
+    },
+    "radar-turn": {
+      "n": 83,
+      "sum": 33.29466666666668
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 128,
+      "sum": 160
+    }
+  },
+  "live_t_c4_mid_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 35,
+      "sum": 48.99999999999997
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 10,
+      "sum": -1.0999999999999999
+    },
+    "fight-peek": {
+      "n": 7,
+      "sum": 8.70692307692308
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 129,
+      "sum": 43.59384615384617
+    },
+    "strafe-advance": {
+      "n": 224,
+      "sum": 273.4900000000001
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 30,
+      "sum": 28.549999999999997
+    },
+    "radar-turn": {
+      "n": 138,
+      "sum": 34.652461538461544
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 98,
+      "sum": 122.5
+    }
+  },
+  "live_t_wall_foe": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 87,
+      "sum": 25.140000000000022
+    },
+    "strafe-advance": {
+      "n": 76,
+      "sum": 94.19384615384612
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 2,
+      "sum": 2.5
+    },
+    "radar-turn": {
+      "n": 23,
+      "sum": 4.51
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 51,
+      "sum": 63.94384615384615
+    }
+  },
+  "live_t_planted_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-peek": {
+      "n": 3,
+      "sum": 2.6045454545454554
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 19,
+      "sum": 6.080000000000001
+    },
+    "strafe-advance": {
+      "n": 8,
+      "sum": 6.75
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": -1.2
+    },
+    "radar-turn": {
+      "n": 27,
+      "sum": 1.9200000000000024
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 2,
+      "sum": 2.8876923076923076
+    }
+  },
+  "live_t_planted_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 3,
+      "sum": 2.55
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 114,
+      "sum": 36.96391608391608
+    },
+    "strafe-advance": {
+      "n": 63,
+      "sum": 78.75
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": 1.25
+    },
+    "radar-turn": {
+      "n": 32,
+      "sum": 10.240000000000004
+    },
+    "radar-chase": {
+      "n": 1,
+      "sum": 1.05
+    },
+    "radar-open": {
+      "n": 28,
+      "sum": 35
+    }
+  },
+  "live_t_c4_mid_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 40,
+      "sum": 56.80769230769227
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 4,
+      "sum": 3.5938461538461537
+    },
+    "fight-peek": {
+      "n": 3,
+      "sum": 3.7315384615384612
+    },
+    "fight-push": {
+      "n": 1,
+      "sum": 1.2438461538461538
+    },
+    "check-corner": {
+      "n": 86,
+      "sum": 29.103076923076937
+    },
+    "strafe-advance": {
+      "n": 112,
+      "sum": 141.35692307692307
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 14,
+      "sum": 17.669999999999998
+    },
+    "radar-turn": {
+      "n": 48,
+      "sum": 60.45384615384616
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 92,
+      "sum": 115
+    }
+  },
+  "live_t_c4_execute_open": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 2,
+      "sum": 17.54
+    },
+    "unstick-wall": {
+      "n": 9,
+      "sum": -1.8000000000000003
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe-advance": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": -3.98
+    },
+    "radar-turn": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  },
+  "menu": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe-advance": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 9,
+      "sum": -6
+    },
+    "radar-turn": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  },
+  "dead": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe-advance": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 46,
+      "sum": -188.76000000000005
+    },
+    "radar-turn": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  },
+  "live_t_c4_execute_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 1,
+      "sum": -1.21
+    },
+    "unstick-wall": {
+      "n": 8,
+      "sum": -2.8000000000000003
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe-advance": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": 2.52
+    },
+    "radar-turn": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  },
+  "live_t_exec_wall": {
+    "wait": {
+      "n": 0,
+      "sum": 0
+    },
+    "forward": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "back": {
+      "n": 0,
+      "sum": 0
+    },
+    "shoot": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_l": {
+      "n": 0,
+      "sum": 0
+    },
+    "aim_r": {
+      "n": 0,
+      "sum": 0
+    },
+    "plant": {
+      "n": 0,
+      "sum": 0
+    },
+    "defuse": {
+      "n": 0,
+      "sum": 0
+    },
+    "use": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_click": {
+      "n": 0,
+      "sum": 0
+    },
+    "cta_enter": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "reload": {
+      "n": 0,
+      "sum": 0
+    },
+    "unstick-wall": {
+      "n": 5,
+      "sum": -1.75
+    },
+    "fight-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "fight-push": {
+      "n": 0,
+      "sum": 0
+    },
+    "check-corner": {
+      "n": 0,
+      "sum": 0
+    },
+    "strafe-advance": {
+      "n": 0,
+      "sum": 0
+    },
+    "jump-peek": {
+      "n": 0,
+      "sum": 0
+    },
+    "bunnyhop": {
+      "n": 0,
+      "sum": 0
+    },
+    "curb-jump": {
+      "n": 0,
+      "sum": 0
+    },
+    "explore": {
+      "n": 1,
+      "sum": 2.52
+    },
+    "radar-turn": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-chase": {
+      "n": 0,
+      "sum": 0
+    },
+    "radar-open": {
+      "n": 0,
+      "sum": 0
+    }
+  }
+}

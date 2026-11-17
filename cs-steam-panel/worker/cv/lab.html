@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CS2 Agent Lab</title>
+  <link rel="stylesheet" href="/lab.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">CS2 Agent Lab<span>шесть навыков, по одному</span></div>
+      <nav class="nav">
+        <button type="button" data-tab="home">Сводка</button>
+        <button type="button" data-tab="eyes"><span class="n">1</span>Зрение</button>
+        <button type="button" data-tab="walk" class="on"><span class="n">2</span>Ходьба и карта</button>
+        <button type="button" data-tab="aim"><span class="n">3</span>Прицеливание</button>
+        <button type="button" data-tab="fire"><span class="n">4</span>Стрельба</button>
+        <button type="button" data-tab="strafe"><span class="n">5</span>Стрейф и бой</button>
+        <button type="button" data-tab="build"><span class="n">6</span>Сборка агента</button>
+        <button type="button" class="diag" data-tab="diag">Диагностика</button>
+      </nav>
+    </aside>
+    <main class="main">
+      <section class="panel on" id="p-home">
+        <div class="hero">
+          <h1>CS2 Agent Lab</h1>
+          <p>Собираем игрового агента по частям: зрение → движение → прицеливание → стрельба → бой → объединение</p>
+        </div>
+        <div class="now" id="nowBanner">Сейчас работаем над: Ходьба и карта</div>
+        <div class="progress" id="prog"></div>
+        <div class="card">
+          <h2>Что мы строим</h2>
+          <p>Автономного бота для локальной тренировочной VM. Каждый навык проверяем отдельно. «Готово» только после теста в игре, не по числу файлов.</p>
+          <p class="muted" id="homeNext">Следующее действие: открыть «Ходьба и карта» и посмотреть, какие данные карты уже есть.</p>
+        </div>
+      </section>
+
+      <section class="panel" id="p-eyes" hidden>
+        <div class="two labwork">
+          <div class="card">
+            <h2>Кадр и разметка</h2>
+            <div class="stage">
+              <img id="bg" alt="live" />
+              <canvas id="cv"></canvas>
+            </div>
+            <div class="cls">
+              <button type="button" id="c0" data-cls="0">CT тело</button>
+              <button type="button" id="c1" data-cls="1" class="on">CT голова</button>
+              <button type="button" id="c2" data-cls="2">T тело</button>
+              <button type="button" id="c3" data-cls="3">T голова</button>
+              <button type="button" id="c4" data-cls="4">стена</button>
+              <button type="button" id="c7" data-cls="7">укрытие</button>
+              <button type="button" id="c10" data-cls="10">оружие на полу</button>
+              <button type="button" id="c11" data-cls="11">труп</button>
+            </div>
+            <p class="muted">Лежачих метить как «труп», не как тело. Команды вроде «развернуться» сюда не входят.</p>
+            <div class="row">
+              <button type="button" class="pri" id="save">сохранить разметку</button>
+              <button type="button" id="undo">undo бокс</button>
+              <button type="button" id="refresh">новый кадр</button>
+              <button type="button" id="overlayYolo" class="on">оверлей YOLO: вкл</button>
+            </div>
+          </div>
+          <div class="card">
+            <h2>Отдельные операции</h2>
+            <div class="row">
+              <button type="button" id="trainEyes">обучить модель</button>
+              <button type="button" id="testEyes">проверить модель на кадре</button>
+            </div>
+            <p class="muted">Сохранение не учит сеть и не двигает бота. Обучение не включает управление VM.</p>
+            <h3>Превью YOLO</h3>
+            <p class="muted">Так видит детектор. Разметка слева остаётся на чистом кадре, если оверлей выключен.</p>
+            <div class="stage"><img id="yoloPrev" alt="yolo preview" /></div>
+            <pre id="eyesOut"></pre>
+          </div>
+        </div>
+        <div class="card"><h2>Что мы делаем</h2><p>Учим систему понимать, что находится на игровом экране.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>Без списка объектов на кадре бот не знает, где игроки. Зрение только сообщает «кто где». Оно не выбирает, куда идти и когда стрелять.</p></div>
+        <div class="card">
+          <h2>Что у нас уже есть</h2>
+          <div class="kv" id="eyesKv"></div>
+          <p class="muted">YOLO рисует рамки. Решение ходить или стрелять здесь не принимается.</p>
+        </div>
+        <div class="card">
+          <h2>Какие инструменты можно использовать</h2>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>Ultralytics YOLO</b><p>Детектор игроков. Живые веса Priler yolov8m 640 ONNX DirectML, не CPU seed.</p></div>
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>OpenCV</b><p>Читает картинку и рисует стекло. Есть в cv/engine.py.</p></div>
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>Готовые веса детекции</b><p>Публичная 4-классовая модель игроков. Это детектор, не мозг бота.</p></div>
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>Ручная разметка</b><p>Рамки на кадре ниже. Сохранение пишет картинку и txt. Обучение само не стартует.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Проверка на независимом кадре</b><p>Кнопка «проверить модель» читает текущий кадр. Это не отдельный тестовый набор.</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>План действий</h2>
+          <ol>
+            <li>Взять новый кадр из VM.</li>
+            <li>При необходимости поправить рамки вручную и сохранить.</li>
+            <li>Обучение запускать только отдельной кнопкой.</li>
+            <li>Проверить модель на кадре с ботами в раунде, не в меню.</li>
+          </ol>
+        </div>
+        <div class="card"><h2>Как проверим результат</h2><p>На нескольких кадрах из раунда рамки совпадают с игроками. Меню и таблица не считаются успехом.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Проверить модель на кадре, пока в VM идёт раунд с ботами.</p></div>
+      </section>
+
+      <section class="panel" id="p-walk" hidden>
+        <div class="card"><h2>Что мы делаем</h2><p>Даём боту карту, учим находить путь и проходить его без столкновений со стенами.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>Агент должен уметь дойти из точки A в точку B. Пока ходьба не проходит тест, прицел и стрельба не подключаем.</p></div>
+        <div class="card">
+          <h2>Что у нас уже есть</h2>
+          <p class="muted">Ниже факты с диска и GSI. Нет выдуманной карты.</p>
+          <div class="kv" id="walkKv"></div>
+        </div>
+        <div class="card">
+          <h3>Карта</h3>
+          <p>Если поля пустые, так и пишем: Нет данных. Геометрии CS2 и navmesh в репозитории нет.</p>
+        </div>
+        <div class="card">
+          <h3>Построение маршрута</h3>
+          <p>Выбираем точку назначения, алгоритм рассчитывает путь по проходимым участкам.</p>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>Occupancy с миникарты</b><p>32x32 стены с HUD-радара (порог+erode как wyhong). Это не navmesh CS2.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>A*</b><p>Ищет путь по occupancy. Вход: своя точка и цель на радаре. В VM маршрут ещё не подтверждён.</p></div>
+            <div class="tool"><span class="tag tag-no">Не подходит</span><b>Navmesh pathfinding</b><p>Готовой сетки карты в проекте нет. Пока не из чего строить.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Waypoints</b><p>Движение к следующей точке есть в control/waypoint.mjs. Не привязано к сетке CS2.</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Управление движением</h3>
+          <p>Бот идёт к следующей точке, корректирует направление и проверяет, не застрял ли.</p>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>WASD controller</b><p>Клавиши через guest-input. Нужен запущенный контур бота.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Stuck detection</b><p>Остановка, если нет своей точки или бот стоит слишком долго.</p></div>
+          </div>
+        </div>
+        <div class="card walktest">
+          <button type="button" class="copycorner" id="copyWalkLog">копировать лог</button>
+          <h3>Тестирование</h3>
+          <p>Критерий завершения: бот сам проходит короткий маршрут на одной карте из нескольких стартов и не застревает. Этап не «Готово», пока этого теста нет.</p>
+          <div class="radarrow">
+            <div class="radarwrap">
+              <img id="radar" alt="radar" src="/radar.png" />
+              <canvas id="radarPath"></canvas>
+            </div>
+            <div class="radarwrap occwrap">
+              <canvas id="occView"></canvas>
+            </div>
+          </div>
+          <p class="muted">ЛКМ на радаре = цель. ПКМ = вот тут я (если циан не там). Справа живая сетка стен.</p>
+          <div class="row">
+            <button type="button" id="walkClearSelf">сбросить метку я</button>
+          </div>
+          <div class="sliders" id="radarSliders">
+            <label>темнота стены <b id="vWallMax">92</b>
+              <input type="range" id="wallMax" min="40" max="110" step="1" value="88" />
+            </label>
+            <label>заливка клетки % <b id="vWallFill">38</b>
+              <input type="range" id="wallFill" min="12" max="80" step="1" value="38" />
+            </label>
+            <label>сетка <b id="vOccN">48</b>
+              <input type="range" id="occN" min="24" max="80" step="8" value="48" />
+            </label>
+          </div>
+          <p class="muted" id="pathFitLine">Сначала клик и «рассчитать маршрут».</p>
+          <div class="row">
+            <button type="button" id="walkKick">кикнуть ботов</button>
+            <button type="button" id="walkSnap">снимок радара</button>
+            <button type="button" id="walkPlan">рассчитать маршрут</button>
+            <button type="button" class="pri" id="walkStart">запустить локальный тест</button>
+            <button type="button" id="walkNudge">нажать W 1с</button>
+            <button type="button" class="danger" id="walkStop">остановить движение</button>
+          </div>
+          <div class="row">
+            <button type="button" id="walkGradeOk">маршрут верный</button>
+            <button type="button" id="walkGradeBad">маршрут врёт</button>
+          </div>
+          <pre id="walkDriveLog" class="muted"></pre>
+          <pre id="walkOut"></pre>
+        </div>
+        <div class="card"><h2>План действий</h2><ol><li>Дождаться позиции на радаре или GSI.</li><li>Кликнуть цель.</li><li>Посчитать путь.</li><li>Запустить тест только с подтверждением.</li><li>Смотреть, дошёл ли бот и не застрял ли.</li></ol></div>
+        <div class="card"><h2>Как проверим результат</h2><p>Несколько стартов, дошёл, клавиши отпущены по Stop, стены не держат на месте.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Кикнуть ботов, снимок радара, клик цели, маршрут, бег по карте. Стрельба пока выкл.</p></div>
+      </section>
+
+      <section class="panel" id="p-aim" hidden>
+        <div class="card"><h2>Что мы делаем</h2><p>Бот получает положение цели и рассчитывает, как повернуть камеру, чтобы навести прицел.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>Без наведения стрельба бессмысленна. Сначала зрение даёт точку, затем камера доворачивается.</p></div>
+        <div class="card"><h2>Что у нас уже есть</h2><p>В репозитории есть PID и фильтр Калмана. К VM они не подключены. Навык не реализован.</p></div>
+        <div class="card">
+          <h2>Какие инструменты можно использовать</h2>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-on">Уже работает</span><b>YOLO detection</b><p>Даёт бокс цели. Сам прицел не крутит.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Kalman filter</b><p>Сглаживает скачки бокса. Файл control/kalman2d.mjs. К мыши не подключён.</p></div>
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>PID controller</b><p>Считает ошибку до центра. control/pid.mjs. К мыши не подключён.</p></div>
+            <div class="tool"><span class="tag tag-maybe">Кандидат для исследования</span><b>Object tracking / visual servoing</b><p>Следить за целью между кадрами. В проекте отдельного трекера нет.</p></div>
+          </div>
+        </div>
+        <div class="card"><h2>Предполагаемая схема</h2><div class="flow">Обнаружение цели → отслеживание → расчёт поворота → движение мыши</div></div>
+        <div class="card"><h2>Входные данные</h2><p>Координаты цели, положение прицела, размер кадра, свежесть обнаружения, чувствительность мыши.</p></div>
+        <div class="card"><h2>План действий</h2><p>Не реализуем сейчас. После ходьбы.</p></div>
+        <div class="card"><h2>Как проверим результат</h2><p>В локальном тесте бот наводится на цель с измеримой ошибкой и задержкой.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Ничего в этом разделе, пока ходьба не пройдёт тест.</p></div>
+      </section>
+
+      <section class="panel" id="p-fire" hidden>
+        <div class="card"><h2>Что мы делаем</h2><p>Бот решает, когда нажать кнопку выстрела, когда отпустить её и когда прекратить стрельбу.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>Даже с прицелом нельзя жать огонь всегда: нет цели, нет патронов, кадр устарел.</p></div>
+        <div class="card"><h2>Что у нас уже есть</h2><p>Правила в control/fire.mjs. К VM не подключены. Навык не реализован.</p></div>
+        <div class="card">
+          <h2>Какие инструменты можно использовать</h2>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Простые правила</b><p>Цель есть, прицел близко, патроны есть, кадр свежий. Не нейросеть.</p></div>
+            <div class="tool"><span class="tag tag-maybe">Кандидат для исследования</span><b>Длительность нажатия</b><p>Короткий тап против зажима. Пока не подключено.</p></div>
+          </div>
+        </div>
+        <div class="card"><h2>Предполагаемая схема</h2><div class="flow">Цель обнаружена → прицел наведен → условия выполнены → выстрел</div></div>
+        <div class="card"><h2>План действий</h2><p>Не реализуем и не подключаем к VM в этой работе.</p></div>
+        <div class="card"><h2>Как проверим результат</h2><p>Повторяемый локальный тест стрельбы и прекращение огня при потере цели.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Ждать прицеливание.</p></div>
+      </section>
+
+      <section class="panel" id="p-strafe" hidden>
+        <div class="card"><h2>Что мы делаем</h2><p>Объединяем боковое движение, остановку, прицеливание и стрельбу.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>В бою нельзя стоять столбом. Это следующий слой после отдельных навыков.</p></div>
+        <div class="card"><h2>Что у нас уже есть</h2><p>Заготовка control/strafe.mjs. Это не готовый бой. Навык не реализован.</p></div>
+        <div class="card">
+          <h2>Какие инструменты можно использовать</h2>
+          <div class="tools">
+            <div class="tool"><span class="tag tag-code">Есть в коде, но не проверено</span><b>Контроллер бокового движения</b><p>Клавиши A/D по правилам. Не проверен в VM.</p></div>
+            <div class="tool"><span class="tag tag-maybe">Кандидат для исследования</span><b>Система состояний</b><p>Когда идти, когда стоять, когда стрелять. Пока пример, не код боя.</p></div>
+          </div>
+        </div>
+        <div class="card"><h2>Пример будущей последовательности</h2><div class="flow">Движение → обнаружение цели → остановка или смена движения → наведение → стрельба → продолжение движения</div><p class="muted">Это пример будущего поведения, не работающая функция.</p></div>
+        <div class="card"><h2>План действий</h2><p>Не реализуем сейчас.</p></div>
+        <div class="card"><h2>Как проверим результат</h2><p>Бот воспроизводимо выполняет ограниченный локальный боевой сценарий.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Не начинать бой, пока нет ходьбы, прицела и стрельбы по отдельности.</p></div>
+      </section>
+
+      <section class="panel" id="p-build" hidden>
+        <div class="card"><h2>Что мы делаем</h2><p>Соединяем готовые навыки и создаём систему, которая выбирает, что делать в каждой ситуации.</p></div>
+        <div class="card"><h2>Зачем это нужно</h2><p>Иначе навыки будут спорить: один жмёт W, другой крутит мышь, третий стреляет.</p></div>
+        <div class="card"><h2>Что у нас уже есть</h2><p>Есть каркас иерархии навыков и единый контроллер клавиш в коде. Лаборатория по умолчанию в режиме ожидания. Этап не реализован как рабочий агент.</p></div>
+        <div class="card">
+          <h2>Предполагаемые компоненты</h2>
+          <p>Выбор цели, выбор активного навыка, приоритеты, передача управления, общий контроллер действий, проверка состояния игры.</p>
+          <p>Разные навыки не должны одновременно слать конфликтующие команды в VM. Одна точка управления.</p>
+        </div>
+        <div class="card"><h2>Предполагаемая схема</h2><div class="flow">Состояние игры → выбор навыка → выполнение → проверка результата</div></div>
+        <div class="card"><h2>Управляющий мозг</h2><p>Так называем слой, который выбирает навык. Старые эксперименты обучения с демонстраций сюда не выносим.</p></div>
+        <div class="card"><h2>План действий</h2><p>Не реализуем сборку, пока отдельные навыки не прошли тесты.</p></div>
+        <div class="card"><h2>Как проверим результат</h2><p>Агент сам проходит полный локальный тренировочный сценарий, используя несколько навыков.</p></div>
+        <div class="card"><h2>Что делать дальше</h2><p>Вернуться к ходьбе.</p></div>
+      </section>
+
+      <section class="panel" id="p-diag" hidden>
+        <div class="card">
+          <h2>Диагностика</h2>
+          <p class="muted">Технические детали. Не часть обучения навыкам. Старые режимы обучения с демонстраций здесь не запускаются.</p>
+          <div class="kv" id="diagKv"></div>
+          <pre id="diagOut"></pre>
+          <p class="muted">Запись человеческой игры и старый teach: <a href="/legacy">/legacy</a>. Логи мозга: <a href="/brain">/brain</a>.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/lab.js"></script>
+</body>
+</html>

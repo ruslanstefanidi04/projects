@@ -1,0 +1,16 @@
+{
+  "classes": [
+    { "id": 0, "name": "c", "label": "CT тело", "color": "#66ccff", "use": "detect" },
+    { "id": 1, "name": "ch", "label": "CT голова", "color": "#99ddff", "use": "detect" },
+    { "id": 2, "name": "t", "label": "T тело", "color": "#ffaa66", "use": "detect" },
+    { "id": 3, "name": "th", "label": "T голова", "color": "#ff8866", "use": "detect" },
+    { "id": 4, "name": "wall", "label": "стена", "color": "#cc4444", "use": "detect" },
+    { "id": 5, "name": "turn", "label": "развернуться", "color": "#44cc88", "use": "command" },
+    { "id": 6, "name": "climb", "label": "climb jump+W", "color": "#44cccc", "use": "command" },
+    { "id": 7, "name": "cover", "label": "укрытие", "color": "#ddaa66", "use": "detect" },
+    { "id": 8, "name": "drop", "label": "сброс вниз", "color": "#cc66cc", "use": "command" },
+    { "id": 9, "name": "look", "label": "смотреть сюда", "color": "#aaaa44", "use": "command" },
+    { "id": 10, "name": "gun", "label": "калаш/авик на полу", "color": "#88ff66", "use": "detect" },
+    { "id": 11, "name": "dead", "label": "труп", "color": "#9a8a7a", "use": "detect" }
+  ]
+}

@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String            @id @default(cuid())
+  email        String            @unique
+  name         String?
+  passwordHash String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  settings     UserSettings?
+  blocks       ScheduleBlock[]
+  notes        Note[]
+  pomodoros    PomodoroSession[]
+  reminders    Reminder[]
+  vaultEntries VaultEntry[]
+  transactions FinanceTx[]
+  categories   FinanceCategory[]
+  workProjects WorkProject[]
+  workTasks    WorkTask[]
+}
+
+model UserSettings {
+  id             String  @id @default(cuid())
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme          String  @default("system")
+  locale         String  @default("ru")
+  accent         String  @default("teal")
+  density        String  @default("comfortable")
+  weekStartsOn   Int     @default(1)
+  pomodoroFocus  Int     @default(25)
+  pomodoroBreak  Int     @default(5)
+  pomodoroLong   Int     @default(15)
+  pomodoroCycles Int     @default(4)
+  soundEnabled   Boolean @default(true)
+  baseCurrency   String  @default("USD")
+}
+
+model ScheduleBlock {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /** 0=Sun .. 6=Sat (js Date.getDay) */
+  weekday   Int
+  startMin  Int
+  endMin    Int
+  title     String
+  color     String   @default("#14b8a6")
+  icon      String   @default("circle")
+  /** Same id for blocks created together across weekdays */
+  groupId   String?
+  note      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, weekday])
+  @@index([userId, groupId])
+}
+
+model Reminder {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      String
+  title     String
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, date])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  body      String   @default("")
+  pinned    Boolean  @default(false)
+  tags      String   @default("[]")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, updatedAt])
+}
+
+model PomodoroSession {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kind        String
+  durationSec Int
+  startedAt   DateTime @default(now())
+  completed   Boolean  @default(true)
+
+  @@index([userId, startedAt])
+}
+
+model VaultEntry {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title          String
+  username       String   @default("")
+  passwordEnc    String
+  url            String   @default("")
+  notes          String   @default("")
+  category       String   @default("login")
+  favorite       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId, updatedAt])
+}
+
+model FinanceTx {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /** income | expense */
+  kind      String
+  amount    Float
+  currency  String   @default("USD")
+  category  String
+  title     String   @default("")
+  note      String   @default("")
+  /** YYYY-MM-DD */
+  date      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, date])
+  @@index([userId, kind])
+}
+
+model FinanceCategory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  key       String
+  name      String
+  emoji     String   @default("✨")
+  color     String   @default("#94a3b8")
+  /** expense | income | both */
+  kind      String   @default("expense")
+  builtin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, key])
+  @@index([userId])
+}
+
+model WorkProject {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  color     String     @default("#14b8a6")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  tasks     WorkTask[]
+
+  @@index([userId])
+}
+
+model WorkTask {
+  id        String      @id @default(cuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  project   WorkProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title     String
+  note      String      @default("")
+  detail    String      @default("")
+  done      Boolean     @default(false)
+  sort      Int         @default(0)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([userId, projectId])
+}

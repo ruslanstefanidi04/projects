@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+.venv/
+__pycache__/
+*.log
+.env
+.env.*
+.DS_Store
+.git-bak-*/
+
+**/con.mjs
+**/Con.mjs
+

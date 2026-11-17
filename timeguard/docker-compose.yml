@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: timeguard
+      POSTGRES_PASSWORD: timeguard
+      POSTGRES_DB: timeguard
+    volumes:
+      - timeguard_pg:/var/lib/postgresql/data
+
+volumes:
+  timeguard_pg:

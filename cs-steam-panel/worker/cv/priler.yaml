@@ -1,0 +1,7 @@
+# priler/csgobot layout after huggingface-cli download
+# classes: c=ct body, ch=ct head, t=t body, th=t head
+path: D:/FarmVMs/ops/yolo/priler
+train: train/images
+val: val/images
+nc: 4
+names: [c, ch, t, th]

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>farm brain logs</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font: 13px/1.4 system-ui, sans-serif; background: #111; color: #ddd; }
+    header { padding: 10px 14px; background: #1a1a1a; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    a { color: #8cf; }
+    .recbar { padding: 8px 14px; font-weight: 700; }
+    .recbar.off { background: #222; color: #888; }
+    .recbar.on { background: #b21; color: #fff; }
+    .recbar.wait { background: #753; color: #fc8; }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 14px 14px; }
+    section { background: #161616; border: 1px solid #333; padding: 8px; min-height: 70vh; display: flex; flex-direction: column; }
+    b { display: block; margin-bottom: 6px; }
+    pre { flex: 1; margin: 0; overflow: auto; white-space: pre-wrap; font: 11px/1.35 ui-monospace, Consolas, monospace; background: #0c0c0c; padding: 8px; }
+    .think { color: #9ec; }
+    .fsm { color: #ccc; }
+    .muted { opacity: 0.65; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <b>мысли и логи</b>
+    <a href="/">назад в teach</a>
+    <span class="muted" id="meta">...</span>
+  </header>
+  <div id="recBar" class="recbar off">запись: неизвестно</div>
+  <main>
+    <section>
+      <b>мысли (глаза / часы / руки)</b>
+      <pre class="think" id="think">...</pre>
+    </section>
+    <section>
+      <b>логи fsm + запись</b>
+      <pre class="fsm" id="logs">...</pre>
+    </section>
+  </main>
+  <script>
+    function recBar(r) {
+      const el = document.getElementById("recBar");
+      if (r && r.starting) {
+        el.className = "recbar wait";
+        el.textContent = "запись стартует...";
+        return;
+      }
+      if (!r || !r.on) {
+        el.className = "recbar off";
+        el.textContent = "ЗАПИСЬ ВЫКЛ. бот водит";
+        return;
+      }
+      el.className = "recbar on";
+      el.textContent = "ЗАПИСЬ ИДЁТ  session " + (r.session || "?") + "  fire=" + (r.fires || 0) + "  keys=" + (r.keys || 0) + "  кадры=" + (r.frames || 0);
+    }
+    function fmtLines(lines, kind) {
+      return (lines || []).map((raw) => {
+        try {
+          const o = JSON.parse(raw);
+          const t = String(o.at || "").slice(11, 19);
+          if (kind === "think") return t + "  SEE " + (o.see || "") + "\n    WHY " + (o.why || "") + "  DO " + (o.do || o.reason || "");
+          if (kind === "record") return t + "  rec " + (o.event || (o.on ? "on" : "off")) + "  fire=" + (o.fires || 0) + " keys=" + (o.keys || 0) + " " + (o.session || "");
+          return t + "  " + (o.text || raw);
+        } catch {
+          return raw;
+        }
+      }).join("\n");
+    }
+    async function tick() {
+      const [think, fsm, rec, hud] = await Promise.all([
+        fetch("/api/brain?kind=think&n=80").then((r) => r.json()),
+        fetch("/api/brain?kind=fsm&n=80").then((r) => r.json()),
+        fetch("/api/brain?kind=record&n=40").then((r) => r.json()),
+        fetch("/api/hud").then((r) => r.json())
+      ]);
+      recBar(hud.record);
+      document.getElementById("think").textContent = fmtLines(think.lines, "think") || "пусто";
+      const recLines = fmtLines(rec.lines, "record");
+      document.getElementById("logs").textContent = (fmtLines(fsm.lines, "fsm") + (recLines ? "\n--- record ---\n" + recLines : "")) || "пусто";
+      const files = (hud.brainFiles || rec.files || []).map((f) => f.name + " " + f.bytes).join(" | ");
+      document.getElementById("meta").textContent =
+        "policy " + ((hud.policy && hud.policy.id) || "fsm") + "  " + (files || ("think " + (think.file || "") + "  fsm " + (fsm.file || "")));
+      const t = document.getElementById("think");
+      const l = document.getElementById("logs");
+      t.scrollTop = t.scrollHeight;
+      l.scrollTop = l.scrollHeight;
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>

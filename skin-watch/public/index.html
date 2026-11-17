@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>vault · skin desk</title>
+  <link rel="stylesheet" href="/desk.css" />
+</head>
+<body class="desk">
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <h1>vault</h1>
+        <p>skin desk</p>
+      </div>
+    </div>
+    <nav class="nav" data-nav></nav>
+    <div class="status">
+      <span id="pulse" class="pulse"></span>
+      <span id="tickmeta">waiting</span>
+    </div>
+  </header>
+  <p class="venues">skinport · steam · csfloat · dmarket · aim · waxpeer · lis · skins · skin.place · white · you click buy</p>
+
+  <div id="flash" class="flash hidden"></div>
+
+  <main>
+    <section class="tape">
+      <div class="tapebar">
+        <div class="kinds" id="kindBar">
+          <button type="button" data-kind="" class="on">all</button>
+          <button type="button" data-kind="snipe">snipe</button>
+          <button type="button" data-kind="spread">spread</button>
+          <button type="button" data-kind="extreme">extreme</button>
+          <button type="button" data-kind="pattern">pattern</button>
+          <button type="button" data-kind="sticker">sticker</button>
+          <button type="button" data-kind="rise">rise</button>
+          <button type="button" data-kind="floor">floor</button>
+        </div>
+        <div class="tape-tools">
+          <div id="pager" class="pager"></div>
+          <label>sort
+            <select id="sortBy">
+              <option value="board">as listed</option>
+              <option value="spread">spread %</option>
+              <option value="price">price low</option>
+              <option value="pricehi">price high</option>
+              <option value="net">net $</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div id="cards" class="cards">
+        <div class="loader" role="status"><i></i><span>loading tape…</span></div>
+      </div>
+    </section>
+
+    <aside>
+      <form id="cfg" class="card">
+        <h2>filters</h2>
+        <div class="watchbox">
+          <span class="watch-label">watch</span>
+          <button id="watchBtn" type="button">knives, gloves</button>
+          <div id="watchMenu" class="watch-menu hidden">
+            <p>type</p>
+            <label><input type="checkbox" data-watch="knives" checked /> knives</label>
+            <label><input type="checkbox" data-watch="gloves" checked /> gloves</label>
+            <label><input type="checkbox" data-watch="rifles" /> rifles</label>
+            <label><input type="checkbox" data-watch="snipers" /> snipers</label>
+            <label><input type="checkbox" data-watch="pistols" /> pistols</label>
+            <label><input type="checkbox" data-watch="smgs" /> smgs</label>
+            <label><input type="checkbox" data-watch="lmgs" /> lmgs</label>
+            <label><input type="checkbox" data-watch="cases" /> cases</label>
+            <label><input type="checkbox" data-watch="stickers" /> stickers</label>
+            <p>finish</p>
+            <label><input type="checkbox" data-watch="finish:doppler" /> doppler</label>
+            <label><input type="checkbox" data-watch="finish:gamma doppler" /> gamma doppler</label>
+            <label><input type="checkbox" data-watch="finish:fade" /> fade</label>
+            <label><input type="checkbox" data-watch="finish:case hardened" /> case hardened</label>
+            <label><input type="checkbox" data-watch="finish:crimson web" /> crimson web</label>
+            <label><input type="checkbox" data-watch="finish:marble fade" /> marble fade</label>
+            <label><input type="checkbox" data-watch="finish:slaughter" /> slaughter</label>
+            <label><input type="checkbox" data-watch="finish:tiger tooth" /> tiger tooth</label>
+            <label><input type="checkbox" data-watch="finish:lore" /> lore</label>
+          </div>
+        </div>
+        <label>extra pattern names
+          <input name="patternText" autocomplete="off" placeholder="marble fade, crimson web" />
+        </label>
+        <label>extra seeds
+          <input name="seedText" autocomplete="off" placeholder="661, 387, 442" />
+        </label>
+        <div class="grid2">
+          <label>spread %<input name="spreadPct" type="number" min="0" step="1" /></label>
+          <label>snipe %<input name="snipePct" type="number" min="0" step="1" /></label>
+          <label>thin qty<input name="snipeMaxQty" type="number" min="1" step="1" /></label>
+          <label>extreme %<input name="extremePct" type="number" min="0" step="1" /></label>
+          <label>floor<input name="floor" type="number" min="0" step="1" /></label>
+          <label>max float<input name="maxFloat" type="number" min="0" step="0.001" /></label>
+          <label>rise min<input name="heatMin" type="number" min="0" max="99" step="1" /></label>
+        </div>
+        <p class="hint">quotes: skinport, steam, csfloat, dmarket, aim.market, waxpeer, lis-skins, market.csgo.com, skins.com, skin.place, white.market. buff / youpin / login walls skipped. buy yourself.</p>
+        <button type="submit">apply</button>
+        <p id="chats" class="hint"></p>
+      </form>
+
+      <form id="log" class="card">
+        <h2>book</h2>
+        <label>name<input name="name" autocomplete="off" /></label>
+        <label>price<input name="price" type="number" min="0" step="0.01" /></label>
+        <div class="row">
+          <button type="submit" data-side="buy">buy</button>
+          <button type="submit" data-side="sell">sell</button>
+        </div>
+        <p id="pnl" class="pnl"></p>
+        <ol id="journal"></ol>
+      </form>
+    </aside>
+  </main>
+  <div id="chain" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button type="button" class="modal-x" id="chainX">close</button>
+      <div id="chainBody"></div>
+    </div>
+  </div>
+  <script src="/nav.js"></script>
+  <script src="/desk.js"></script>
+</body>
+</html>

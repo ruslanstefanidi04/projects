@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "framework": null,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/use", "destination": "/use.html" },
+    { "source": "/econ", "destination": "/econ.html" },
+    { "source": "/cs", "destination": "/cs.html" },
+    { "source": "/outlook", "destination": "/outlook.html" }
+  ],
+  "crons": [
+    { "path": "/api/outlook-cron", "schedule": "0 8 * * 1" }
+  ]
+}

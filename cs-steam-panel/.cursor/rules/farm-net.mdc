@@ -1,0 +1,15 @@
+---
+description: CS Steam farm Hyper-V - never break Happ/wintun
+globs: worker/vm/**/*.{mjs,ps1,bat}
+alwaysApply: false
+---
+
+# cs-steam-panel farm net
+
+- **Never enable** Hyper-V `Default Switch` / `vEthernet (Default Switch)`.
+- Farm guest net = only `csfarm-int` + `csfarm-nat`, and only while farming. Park `vEthernet (csfarm-int)` when user needs VPN.
+- Never `Enable-NetAdapter` / `Disable-NetAdapter` by wildcard. Exact names only.
+- Never touch Happ, wintun, WireGuard, or other VPN adapters.
+- Control VM via Hyper-V console (Msvm keyboard/mouse), not host Steam/CS.
+- Eyes are host vmconnect PrintWindow, not guest `/see`.
+- One-shot scripts: `_tmp-` prefix, delete after task.

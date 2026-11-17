@@ -1,0 +1,76 @@
+export const ACCENTS = {
+  teal: { hsl: "173 80% 40%", hex: "#14b8a6" },
+  lime: { hsl: "84 80% 44%", hex: "#84cc16" },
+  amber: { hsl: "38 92% 50%", hex: "#f59e0b" },
+  sky: { hsl: "199 89% 48%", hex: "#0ea5e9" },
+  rose: { hsl: "350 80% 55%", hex: "#f43f5e" },
+  violet: { hsl: "262 83% 58%", hex: "#8b5cf6" },
+  orange: { hsl: "24 95% 53%", hex: "#f97316" },
+  fuchsia: { hsl: "292 84% 55%", hex: "#d946ef" },
+  emerald: { hsl: "160 84% 39%", hex: "#10b981" },
+  indigo: { hsl: "239 84% 67%", hex: "#6366f1" },
+  cyan: { hsl: "189 94% 43%", hex: "#06b6d4" },
+  slate: { hsl: "215 16% 47%", hex: "#64748b" },
+} as const;
+
+export type AccentKey = keyof typeof ACCENTS;
+
+export const BLOCK_COLORS = [
+  "#14b8a6",
+  "#10b981",
+  "#84cc16",
+  "#eab308",
+  "#f59e0b",
+  "#f97316",
+  "#ef4444",
+  "#f43f5e",
+  "#ec4899",
+  "#d946ef",
+  "#a855f7",
+  "#8b5cf6",
+  "#6366f1",
+  "#3b82f6",
+  "#0ea5e9",
+  "#06b6d4",
+  "#64748b",
+  "#78716c",
+  "#0f766e",
+  "#1d4ed8",
+];
+
+export const BLOCK_ICON_IDS = [
+  "circle",
+  "briefcase",
+  "book",
+  "code",
+  "coffee",
+  "dumbbell",
+  "heart",
+  "home",
+  "car",
+  "utensils",
+  "music",
+  "gamepad",
+  "phone",
+  "mail",
+  "users",
+  "sparkles",
+  "sun",
+  "moon",
+  "plane",
+  "shopping-bag",
+  "pencil",
+  "timer",
+  "laptop",
+  "graduation-cap",
+  "stethoscope",
+  "palette",
+  "camera",
+  "map-pin",
+  "bell",
+  "star",
+] as const;
+
+export type BlockIconId = (typeof BLOCK_ICON_IDS)[number];
+
+export const DEFAULT_BLOCK_ICON: BlockIconId = "circle";

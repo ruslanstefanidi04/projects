@@ -1,0 +1,548 @@
+{
+  "at": "2026-09-17T15:06:48.027Z",
+  "sessions": [
+    {
+      "name": "human-mu46nyf2",
+      "bins": 4515,
+      "used": 656,
+      "gsi": 384,
+      "keys": 1753,
+      "mouse": 0,
+      "maps": {
+        "de_dust2": 4201
+      }
+    },
+    {
+      "name": "local-mu47takn",
+      "bins": 3012,
+      "used": 1666,
+      "gsi": 365,
+      "keys": 476,
+      "mouse": 37,
+      "maps": {
+        "de_mirage": 2023
+      }
+    },
+    {
+      "name": "local-mu48q2hp",
+      "bins": 6004,
+      "used": 1872,
+      "gsi": 616,
+      "keys": 1578,
+      "mouse": 47616,
+      "maps": {
+        "de_overpass": 3277
+      }
+    },
+    {
+      "name": "local-mu49ztok",
+      "bins": 1516,
+      "used": 445,
+      "gsi": 155,
+      "keys": 467,
+      "mouse": 13918,
+      "maps": {
+        "de_mirage": 816
+      }
+    },
+    {
+      "name": "local-mu4b1ib4",
+      "bins": 8999,
+      "used": 5405,
+      "gsi": 807,
+      "keys": 3169,
+      "mouse": 106420,
+      "maps": {
+        "de_mirage": 8245
+      }
+    },
+    {
+      "name": "local-mu4cxcc4",
+      "bins": 9005,
+      "used": 4119,
+      "gsi": 768,
+      "keys": 3609,
+      "mouse": 83320,
+      "maps": {
+        "de_inferno": 3737,
+        "de_poseidon": 2874
+      }
+    },
+    {
+      "name": "local-mu5n581k",
+      "bins": 3187,
+      "used": 2569,
+      "gsi": 483,
+      "keys": 565,
+      "mouse": 45220,
+      "maps": {
+        "de_dust2 | DM #186 | 20 SLOTS | Falkenstein — CYBERSHOKE.NET": 2104,
+        "de_mirage": 1072
+      }
+    },
+    {
+      "name": "local-mu5nj3jz",
+      "bins": 295,
+      "used": 258,
+      "gsi": 36,
+      "keys": 39,
+      "mouse": 5047,
+      "maps": {
+        "de_dust2 | DM #186 | 20 SLOTS | Falkenstein — CYBERSHOKE.NET": 169,
+        "de_mirage": 103
+      }
+    },
+    {
+      "name": "local-mu5nkjgp",
+      "bins": 2090,
+      "used": 1840,
+      "gsi": 275,
+      "keys": 472,
+      "mouse": 33121,
+      "maps": {
+        "de_dust2 | DM #186 | 20 SLOTS | Falkenstein — CYBERSHOKE.NET": 2078
+      }
+    }
+  ],
+  "skipped": [],
+  "actions": {
+    "strafe-advance": 3947,
+    "explore": 1919,
+    "check-corner": 5600,
+    "radar-chase": 63,
+    "fight-push": 29,
+    "unstick-wall": 215,
+    "radar-turn": 3287,
+    "use": 83,
+    "radar-open": 3468,
+    "defuse": 33,
+    "reload": 15,
+    "fight-peek": 96,
+    "plant": 75
+  },
+  "eventCount": 473,
+  "states": [
+    {
+      "key": "live_ct_exec_open",
+      "n": 6364,
+      "top": [
+        {
+          "a": "explore",
+          "n": 745,
+          "mean": 1.2067033557046978
+        },
+        {
+          "a": "radar-open",
+          "n": 1248,
+          "mean": 1.1529778928336623
+        },
+        {
+          "a": "fight-push",
+          "n": 4,
+          "mean": 1.146923076923077
+        },
+        {
+          "a": "fight-peek",
+          "n": 28,
+          "mean": 1.0938353313353313
+        },
+        {
+          "a": "radar-chase",
+          "n": 22,
+          "mean": 1.054710743801653
+        },
+        {
+          "a": "strafe-advance",
+          "n": 1224,
+          "mean": 0.9980638763923084
+        }
+      ]
+    },
+    {
+      "key": "live_ct_exec_wall",
+      "n": 2010,
+      "top": [
+        {
+          "a": "radar-chase",
+          "n": 2,
+          "mean": 1.68
+        },
+        {
+          "a": "explore",
+          "n": 288,
+          "mean": 1.2754208916083911
+        },
+        {
+          "a": "radar-open",
+          "n": 262,
+          "mean": 1.2562301820317088
+        },
+        {
+          "a": "strafe-advance",
+          "n": 472,
+          "mean": 1.0787171881790512
+        },
+        {
+          "a": "fight-peek",
+          "n": 3,
+          "mean": 0.9388888888888891
+        },
+        {
+          "a": "unstick-wall",
+          "n": 29,
+          "mean": 0.8509372236958448
+        }
+      ]
+    },
+    {
+      "key": "live_ct_planted_open",
+      "n": 723,
+      "top": [
+        {
+          "a": "defuse",
+          "n": 30,
+          "mean": 1.5923076923076913
+        },
+        {
+          "a": "explore",
+          "n": 71,
+          "mean": 1.2943661971830984
+        },
+        {
+          "a": "radar-open",
+          "n": 39,
+          "mean": 1.2650427350427351
+        },
+        {
+          "a": "fight-peek",
+          "n": 1,
+          "mean": 1.05
+        },
+        {
+          "a": "fight-push",
+          "n": 1,
+          "mean": 1.05
+        },
+        {
+          "a": "radar-chase",
+          "n": 1,
+          "mean": 1.05
+        }
+      ]
+    },
+    {
+      "key": "live_ct_planted_wall",
+      "n": 254,
+      "top": [
+        {
+          "a": "defuse",
+          "n": 3,
+          "mean": 1.3999999999999997
+        },
+        {
+          "a": "explore",
+          "n": 55,
+          "mean": 1.2691888111888112
+        },
+        {
+          "a": "radar-open",
+          "n": 21,
+          "mean": 1.25
+        },
+        {
+          "a": "radar-chase",
+          "n": 1,
+          "mean": 1.05
+        },
+        {
+          "a": "unstick-wall",
+          "n": 1,
+          "mean": 1.0438461538461539
+        },
+        {
+          "a": "fight-peek",
+          "n": 1,
+          "mean": 0.8833333333333334
+        }
+      ]
+    },
+    {
+      "key": "live_dm_open_clear",
+      "n": 2595,
+      "top": [
+        {
+          "a": "fight-push",
+          "n": 1,
+          "mean": 1.05
+        },
+        {
+          "a": "radar-chase",
+          "n": 2,
+          "mean": 0.8843181818181818
+        },
+        {
+          "a": "strafe-advance",
+          "n": 651,
+          "mean": 0.7423163861228369
+        },
+        {
+          "a": "radar-open",
+          "n": 501,
+          "mean": 0.6090302565033104
+        },
+        {
+          "a": "explore",
+          "n": 60,
+          "mean": 0.20165299145299154
+        },
+        {
+          "a": "check-corner",
+          "n": 1018,
+          "mean": -0.6417380562844365
+        }
+      ]
+    },
+    {
+      "key": "live_dm_open_foe",
+      "n": 437,
+      "top": [
+        {
+          "a": "explore",
+          "n": 7,
+          "mean": 1.1647728937728936
+        },
+        {
+          "a": "radar-open",
+          "n": 74,
+          "mean": 1.0744238014238017
+        },
+        {
+          "a": "fight-push",
+          "n": 10,
+          "mean": 0.9042500000000008
+        },
+        {
+          "a": "strafe-advance",
+          "n": 81,
+          "mean": 0.8933481059406978
+        },
+        {
+          "a": "fight-peek",
+          "n": 25,
+          "mean": 0.06656923076923112
+        },
+        {
+          "a": "radar-chase",
+          "n": 9,
+          "mean": -0.37913262971596234
+        }
+      ]
+    },
+    {
+      "key": "live_dm_wall_clear",
+      "n": 679,
+      "top": [
+        {
+          "a": "explore",
+          "n": 15,
+          "mean": 1.2066905982905984
+        },
+        {
+          "a": "radar-chase",
+          "n": 4,
+          "mean": 1.1643429487179489
+        },
+        {
+          "a": "radar-open",
+          "n": 128,
+          "mean": 1.010528545673078
+        },
+        {
+          "a": "strafe-advance",
+          "n": 95,
+          "mean": 0.8385023134759974
+        },
+        {
+          "a": "fight-peek",
+          "n": 12,
+          "mean": -0.7034668803418794
+        },
+        {
+          "a": "check-corner",
+          "n": 315,
+          "mean": -1.4113920153920256
+        }
+      ]
+    },
+    {
+      "key": "live_dm_wall_foe",
+      "n": 44,
+      "top": [
+        {
+          "a": "strafe-advance",
+          "n": 27,
+          "mean": 1.2454273504273503
+        },
+        {
+          "a": "explore",
+          "n": 1,
+          "mean": 1.0976923076923077
+        },
+        {
+          "a": "radar-open",
+          "n": 2,
+          "mean": 1.0913461538461537
+        },
+        {
+          "a": "check-corner",
+          "n": 14,
+          "mean": -1.1136263736263736
+        }
+      ]
+    },
+    {
+      "key": "live_t_exec_open",
+      "n": 4102,
+      "top": [
+        {
+          "a": "plant",
+          "n": 35,
+          "mean": 1.3999999999999992
+        },
+        {
+          "a": "explore",
+          "n": 619,
+          "mean": 1.23358866658382
+        },
+        {
+          "a": "radar-chase",
+          "n": 20,
+          "mean": 1.2108923076923082
+        },
+        {
+          "a": "fight-peek",
+          "n": 11,
+          "mean": 1.1867505827505835
+        },
+        {
+          "a": "fight-push",
+          "n": 12,
+          "mean": 1.1340000000000003
+        },
+        {
+          "a": "radar-open",
+          "n": 874,
+          "mean": 0.9265067369701241
+        }
+      ]
+    },
+    {
+      "key": "live_t_exec_wall",
+      "n": 1177,
+      "top": [
+        {
+          "a": "plant",
+          "n": 40,
+          "mean": 1.4201923076923069
+        },
+        {
+          "a": "explore",
+          "n": 54,
+          "mean": 1.25
+        },
+        {
+          "a": "fight-push",
+          "n": 1,
+          "mean": 1.2438461538461538
+        },
+        {
+          "a": "strafe-advance",
+          "n": 279,
+          "mean": 1.1687721716753978
+        },
+        {
+          "a": "fight-peek",
+          "n": 12,
+          "mean": 0.9772494172494176
+        },
+        {
+          "a": "radar-open",
+          "n": 280,
+          "mean": 0.9095824175824175
+        }
+      ]
+    },
+    {
+      "key": "live_t_planted_open",
+      "n": 158,
+      "top": [
+        {
+          "a": "fight-peek",
+          "n": 3,
+          "mean": 0.8681818181818185
+        },
+        {
+          "a": "strafe-advance",
+          "n": 18,
+          "mean": 0.5671794871794864
+        },
+        {
+          "a": "check-corner",
+          "n": 83,
+          "mean": -3.6213469261662077
+        },
+        {
+          "a": "radar-turn",
+          "n": 39,
+          "mean": -6.563547008547012
+        },
+        {
+          "a": "radar-open",
+          "n": 11,
+          "mean": -8.058671328671329
+        },
+        {
+          "a": "explore",
+          "n": 3,
+          "mean": -9.477692307692305
+        }
+      ]
+    },
+    {
+      "key": "live_t_planted_wall",
+      "n": 287,
+      "top": [
+        {
+          "a": "strafe-advance",
+          "n": 64,
+          "mean": 1.25
+        },
+        {
+          "a": "radar-open",
+          "n": 28,
+          "mean": 1.25
+        },
+        {
+          "a": "explore",
+          "n": 1,
+          "mean": 1.25
+        },
+        {
+          "a": "radar-chase",
+          "n": 2,
+          "mean": 1.05
+        },
+        {
+          "a": "unstick-wall",
+          "n": 3,
+          "mean": 0.85
+        },
+        {
+          "a": "radar-turn",
+          "n": 40,
+          "mean": 0.3200000000000002
+        }
+      ]
+    }
+  ]
+}

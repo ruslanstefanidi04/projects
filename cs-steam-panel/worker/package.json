@@ -1,0 +1,17 @@
+{
+  "name": "cs-steam-panel-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "farm": "node farm.mjs",
+    "play": "node farm.mjs play",
+    "status": "node farm.mjs status",
+    "test": "node --test ./test/*.test.mjs"
+  },
+  "dependencies": {
+    "steam-totp": "^2.1.2",
+    "steam-tradeoffer-manager": "^2.11.7",
+    "steam-user": "^5.2.3",
+    "steamcommunity": "^3.48.6"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "skin-watch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/app/index.ts",
+    "vercel-build": "node scripts/copy-public.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.0",
+    "@vercel/node": "^5.5.16",
+    "grammy": "^1.38.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

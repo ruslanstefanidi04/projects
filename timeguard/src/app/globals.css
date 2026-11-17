@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 210 20% 98%;
+  --panel: 0 0% 100%;
+  --surface: 210 16% 94%;
+  --ink: 215 28% 12%;
+  --muted: 215 12% 42%;
+  --edge: 215 16% 86%;
+  --accent: 173 80% 40%;
+  --danger: 0 72% 51%;
+  --grid: 215 16% 90%;
+  --hero-a: 200 40% 92%;
+  --hero-b: 173 50% 88%;
+}
+
+.dark {
+  --bg: 220 24% 6%;
+  --panel: 220 22% 9%;
+  --surface: 220 18% 13%;
+  --ink: 210 20% 96%;
+  --muted: 215 12% 62%;
+  --edge: 220 14% 18%;
+  --accent: 173 80% 42%;
+  --danger: 0 72% 58%;
+  --grid: 220 14% 16%;
+  --hero-a: 220 30% 10%;
+  --hero-b: 173 30% 12%;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, hsl(var(--hero-b) / 0.55), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, hsl(var(--hero-a) / 0.5), transparent 50%),
+    hsl(var(--bg));
+  color: hsl(var(--ink));
+  min-height: 100vh;
+}
+
+html[data-density="compact"] .tg-pad {
+  padding: 0.75rem;
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-xl border border-edge bg-surface/60 px-3 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30;
+  }
+
+  .btn-primary {
+    @apply box-border inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-accent px-4 text-sm font-medium leading-none text-white transition hover:brightness-110 disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply box-border inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-edge bg-panel/50 px-4 text-sm leading-none text-ink transition hover:bg-surface;
+  }
+
+  .btn-danger {
+    @apply box-border inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-danger/40 bg-danger/10 px-4 text-sm leading-none text-danger transition hover:bg-danger/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

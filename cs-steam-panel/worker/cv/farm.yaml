@@ -1,0 +1,5 @@
+path: D:/FarmVMs/ops/yolo/human
+train: train.txt
+val: val.txt
+nc: 12
+names: [c, ch, t, th, wall, turn, climb, cover, drop, look, gun, dead]

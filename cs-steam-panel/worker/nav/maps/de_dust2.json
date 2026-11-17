@@ -1,0 +1,17 @@
+{
+  "map": "de_dust2",
+  "zLevels": ["long", "short", "tunnels"],
+  "nodes": [
+    { "id": "t_spawn", "nx": 0.52, "ny": 0.86, "z": "long", "links": ["long_doors", "mid_doors", "upper"] },
+    { "id": "long_doors", "nx": 0.78, "ny": 0.62, "z": "long", "links": ["t_spawn", "long_a"] },
+    { "id": "long_a", "nx": 0.84, "ny": 0.34, "z": "long", "links": ["long_doors", "a_site"] },
+    { "id": "a_site", "nx": 0.7, "ny": 0.22, "z": "short", "links": ["long_a", "short", "ct"] },
+    { "id": "mid_doors", "nx": 0.5, "ny": 0.52, "z": "short", "links": ["t_spawn", "short", "ct"] },
+    { "id": "short", "nx": 0.56, "ny": 0.34, "z": "short", "links": ["mid_doors", "a_site", "cat"] },
+    { "id": "cat", "nx": 0.42, "ny": 0.3, "z": "short", "links": ["short", "ct"] },
+    { "id": "ct", "nx": 0.36, "ny": 0.2, "z": "short", "links": ["a_site", "cat", "mid_doors"] },
+    { "id": "upper", "nx": 0.38, "ny": 0.66, "z": "tunnels", "links": ["t_spawn", "tunnels"] },
+    { "id": "tunnels", "nx": 0.22, "ny": 0.55, "z": "tunnels", "links": ["upper", "b"] },
+    { "id": "b", "nx": 0.16, "ny": 0.28, "z": "tunnels", "links": ["tunnels"] }
+  ]
+}

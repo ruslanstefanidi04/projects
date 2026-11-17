@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>how · vault</title>
+  <link rel="stylesheet" href="/desk.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark"></span>
+      <div>
+        <h1>vault</h1>
+        <p>how to use this thing</p>
+      </div>
+    </div>
+    <nav class="nav" data-nav></nav>
+  </header>
+  <article class="guide">
+    <nav class="toc">
+      <strong>оглавление</strong>
+      <ol>
+        <li><a href="#what">что это</a></li>
+        <li><a href="#tick">как живёт тик</a></li>
+        <li><a href="#tape">лента и бейджи</a></li>
+        <li><a href="#filters">фильтры справа</a></li>
+        <li><a href="#pattern">паттерны и флоат</a></li>
+        <li><a href="#rise">RISE</a></li>
+        <li><a href="#tg">телеграм</a></li>
+        <li><a href="#book">книга сделок</a></li>
+        <li><a href="#outlook">недельный outlook</a></li>
+        <li><a href="#lies">чего стол не знает</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what">1. Что это</h2>
+    <p>Стол тянет Skinport каталог, Steam, CSFloat, DMarket, AIM Market, Waxpeer, LIS-SKINS и market.csgo.com. На карточке чужие аски. AIM для Doppler матчит фазу. Waxpeer/LIS/TM это дамп lowest по имени, без фазы. Покупка руками. Buff / YouPin / логин-стенки не парсим.</p>
+
+    <h2 id="tick">2. Как живёт тик</h2>
+    <ul>
+      <li>Локально процесс крутит опрос сам (не чаще 30 секунд).</li>
+      <li>На Vercel минутного крона нет. Тик случается, когда открыта вкладка: фронт бьёт <code>POST /api/tick</code> раз в 30 секунд.</li>
+      <li>Закрыл вкладку: лента замирает, телега тоже молчит, пока кто-то не дернёт тик.</li>
+      <li>Skinport иногда отвечает 429. Тогда стол ест кэш каталога и не орёт впустую.</li>
+    </ul>
+    <p>Шапка: сколько карточек на доске. Тик идёт сам, пока вкладка открыта.</p>
+
+    <h2 id="vercel">2b. Защита Vercel</h2>
+    <p>Если вместо стола логин Vercel: в проекте включена Deployment Protection. Выключи для этого проекта или сиди залогиненным. Иначе даже <code>/start</code> у бота может не достучаться до вебухука.</p>
+
+    <h2 id="tape">3. Лента и бейджи</h2>
+    <ul>
+      <li><code>SPREAD</code>: мин. цена ниже suggested. На карточке <code>net</code>: купил по min, продал по suggested, минус комиссия площадки (Skinport 6%, Steam 15%, CSFloat 2%). Если есть Steam-котировка, строка <code>alt</code> считает buy здесь / sell там.</li>
+      <li><code>SNIPE</code>: жирная скидка и тонкая книга (qty не больше thin qty). Тонкий стакан: мало лотов, цена может быть дырой, а не подарком.</li>
+      <li><code>EXTREME</code>: скидка совсем злая. Часто ошибка, фейк-ориентир, или шмот, который никто не хочет.</li>
+      <li><code>FLOOR</code>: цена ниже твоего пола в баксах. Ноль = выкл.</li>
+      <li><code>PATTERN</code>: гем (sapphire / ruby / emerald / black pearl) хотя бы 18% ниже suggested.</li>
+      <li><code>STICKER</code>: на стволе Kato 2014 / Howling Dawn / Crown foil и т.п. Лоты парсим с Steam Market (описание листинга, дешёвые хосты + recent). CSFloat если пускает без логина. Максимум 8.</li>
+      <li><code>RISE</code>: скор по средней/медиане каталога плюс история продаж Skinport 7д vs 30д, объём, тонкая книга. Не предсказание завтрашнего дня.</li>
+    </ul>
+    <p>Карточка: мин. цена, suggested, % off, why-строка у rise, кнопка на лот. Алерты в телегу: snipe / pattern / sticker / rise, не каждый spread.</p>
+
+    <h2 id="filters">4. Фильтры справа</h2>
+    <ul>
+      <li><strong>watch</strong>: типы и финиши галочками. Пусто = all, вся лента. <code>stickers</code> это отдельные наклейки в каталоге. Крафт на винтовке всё равно проходит, если выбран rifles.</li>
+      <li><strong>spread / snipe / extreme %</strong>: пороги скидки к suggested. Чем выше, тем меньше мусора и тем больше ты пропустишь.</li>
+      <li><strong>thin qty</strong>: для snipe. 6 значит «скидка и на рынке не больше 6 штук».</li>
+      <li><strong>floor</strong>: абсолютный пол в USD. Имеет смысл, если ты охотишься на конкретный ценовой карман.</li>
+      <li><strong>rise min</strong>: порог скора (0–99). 56 по умолчанию. Ниже = больше голубых карточек и больше шума.</li>
+    </ul>
+    <p>Apply пишет конфиг в состояние. На Vercel состояние в <code>/tmp</code>: после холодного старта чаты и пороги могут сброситься. Тогда снова apply и снова <code>/start</code> боту.</p>
+
+    <h2 id="pattern">5. Паттерны и флоат</h2>
+    <p>Каталог Skinport режет Doppler / Gamma по version (Phase 1–4, Sapphire, Ruby, Emerald, Black Pearl). PATTERN только если это гем <strong>и</strong> мин. цена хотя бы на 18% ниже suggested (env <code>PATTERN_PCT</code>). На ленте максимум 8 таких карточек, иначе гемы забивают весь стол. Обычный Phase 3 и гем «по рынку» не тэг. Case Hardened / Fade в фиде без seed.</p>
+
+    <h2 id="rise">6. RISE</h2>
+    <p>Не нейросеть. Скор из:</p>
+    <ul>
+      <li>насколько мин. цена сидит относительно mean / median в каталоге;</li>
+      <li>продажи 7 дней против 30 дней (кэш истории ~6 часов);</li>
+      <li>объём;</li>
+      <li>тонкая книга.</li>
+    </ul>
+    <p>Телега rise только когда скор пересекает порог снизу вверх. Иначе одно и то же имя будет орать каждый тик. RISE может быть разгоном, новостным впрыском, или просто тонким рынком. Читай why-строку, потом думай.</p>
+
+    <h2 id="tg">7. Телеграм</h2>
+    <ol>
+      <li>Бот уже привязан токеном в env.</li>
+      <li>Пишешь боту <code>/start</code>. Чат кладётся в state.</li>
+      <li>Прилетает текст + ссылка. Покупка руками.</li>
+    </ol>
+    <p>На проде webhook: <code>/api/telegram</code>. Если чаты пустые после деплоя: <code>/tmp</code> умер, жми /start ещё раз. Не пасти токен в чатах и скриншотах.</p>
+
+    <h2 id="book">8. Книга сделок</h2>
+    <p>Это бумажный журнал: вписал имя и цену, нажал buy/sell. Стол считает paper pnl. К Skinport и Steam кошельку это не подключено. Нужно, чтобы не держать память в голове, не чтобы «робот закрыл позицию».</p>
+
+    <h2 id="outlook">8b. Недельный outlook</h2>
+    <p>Отдельная страница <a href="/outlook.html">outlook</a>: раз в неделю OpenRouter смотрит сжатый срез каталога Skinport (не все 20к имён в один промпт), историю продаж и публичные новости (модель с <code>:online</code>). Помечает grow / watch / avoid на горизонт около года. Это нарратив, не гарантия плюса. На проде крона: понедельник 08:00 UTC. Без ключа OpenRouter кнопка молчит. В телегу уходит сжатый список, покупка всё равно руками.</p>
+
+    <h2 id="lies">9. Чего стол не знает</h2>
+    <ul>
+      <li>Реальный last sale на Steam Community Market в эту секунду.</li>
+      <li>Float / seed / nametag с Skinport items API. Стикеры на лоте: только если CSFloat отдал листинг.</li>
+      <li>Очередь, резерв, кто перебил лот пока ты открывал вкладку.</li>
+      <li>Буфф, юпин и любые логин-стенки. Не обходим.</li>
+      <li>Будущую цену. RISE не alpha-фонд.</li>
+    </ul>
+    <p>Дальше: <a href="/econ.html">учебник экономики и трейдинга</a> (двенадцать глав), потом <a href="/cs.html">как это ломается об Steam и CS</a>.</p>
+  </article>
+  <script src="/nav.js"></script>
+</body>
+</html>
